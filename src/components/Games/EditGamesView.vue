@@ -76,7 +76,6 @@
         <div id="gameTitle">
           <v-text-field
             v-model="selectedGameObj.title"
-            solo
             label="Title"
             clearable
           ></v-text-field>
@@ -85,7 +84,6 @@
         <div id="gameCreator">
           <v-text-field
             v-model="selectedGameObj.creator"
-            solo
             label="Creator"
             clearable
           ></v-text-field>
@@ -97,19 +95,42 @@
             auto-grow
             clearable
             label="Description"
-            rounded
-            solo
           ></v-textarea>
         </div>
 
         <div id="gameImage">
-          <v-file-input
-            :rules="rules"
-            accept="image/*"
-            placeholder="Избери изображение"
-            prepend-icon="mdi-camera"
-            label="Game Image"
-          ></v-file-input>
+          <app-file-upload
+            :imageName="selectedGameObj.imageUrl"
+            @imageUrl="selectedGameObj.imageUrl = $event"
+            @rawImage="uploadedImage = $event"
+          ></app-file-upload>
+        </div>
+
+        <div id="gameTrailer">
+          <v-text-field
+            v-model="selectedGameObj.trailer"
+            label="Trailer Url"
+            clearable
+          ></v-text-field>
+        </div>
+
+        <div id="gameOrder">
+          <v-text-field
+            v-model="selectedGameObj.title"
+            label="Game Place"
+            clearable
+          ></v-text-field>
+        </div>
+
+        <div id="gameTags">
+          <v-select
+            v-model="select"
+            :items="selectedGameObj.tags"
+            item-text="name"
+            label="Game Tags"
+            chips
+            tags
+          ></v-select>
         </div>
 
       </div>
@@ -118,6 +139,8 @@
 </template>
 
 <script>
+  import fileUpload from './FileUpload'
+
   export default {
     data() {
       return {
@@ -125,7 +148,8 @@
         selectedGame: '',
         selectedGameObj: {},
         trailerURL: null,
-        showTrailer: false
+        showTrailer: false,
+        uploadedImage: null
       }
     },
     computed: {
@@ -140,6 +164,9 @@
       }
     },
     methods: {
+    },
+    components: {
+      appFileUpload: fileUpload
     },
     created() {
       this.games = this.$store.getters.getGames
@@ -175,14 +202,13 @@
     width: 63%;
     height: 100%;
     display: grid;
-    grid-template-columns: auto;
-    grid-template-rows: auto;
+    grid-template-columns: 50% 50%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
     grid-template-areas:
       "title title"
       "creator description"
       "image description"
-      "trailer description"
-      "order description"
+      "trailer order"
       "tags tags";
   }
 
@@ -194,16 +220,40 @@
 
   #gameCreator {
     grid-area: creator;
-    align-self: start;
-    justify-self: start;
-    width: 40%;
+    align-self: center;
+    justify-self: center;
+    width: 60%;
+    height: 50px;
   }
 
   #gameImage {
+    display: inline;
     grid-area: image;
-    align-self: start;
-    justify-self: start;
-    width: 40%;
+    align-self: center;
+    margin-top: -9vh;
+  }
+
+  #gameTrailer {
+    grid-area: trailer;
+    align-self: center;
+    justify-self: center;
+    width: 60%;
+    height: 50px;
+  }
+
+  #gameOrder {
+    grid-area: order;
+    align-self: center;
+    justify-self: center;
+    width: 60%;
+    height: 50px;
+  }
+
+  #gameTags {
+    grid-area: tags;
+    align-self: center;
+    justify-self: center;
+    height: 50px;
   }
 
   .card {

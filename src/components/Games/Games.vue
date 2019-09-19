@@ -37,7 +37,7 @@
     methods: {
       switchViews (){
         if (this.visualizedComponent === standartGamesView) {
-          this.visualizedComponent = fileUpload
+          this.visualizedComponent = editGamesView
         }
         else {
           this.visualizedComponent = standartGamesView
