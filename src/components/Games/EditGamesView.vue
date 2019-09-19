@@ -144,6 +144,7 @@
   export default {
     data() {
       return {
+        deleteMeLater: null,
         games: [],
         selectedGame: '',
         selectedGameObj: {},
