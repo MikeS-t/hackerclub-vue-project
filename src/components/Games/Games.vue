@@ -24,7 +24,7 @@
   export default {
     data() {
       return {
-        visualizedComponent: standartGamesView
+        visualizedComponent: editGamesView
       }
     },
     computed: {

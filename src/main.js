@@ -46,7 +46,7 @@ new Vue({
       authDomain: "hackerproject-4fa60.firebaseapp.com",
       databaseURL: "https://hackerproject-4fa60.firebaseio.com",
       projectId: "hackerproject-4fa60",
-      storageBucket: "hackerproject-4fa60.appspot.com"
+      storageBucket: "gs://hackerproject-4fa60.appspot.com/"
     })
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {

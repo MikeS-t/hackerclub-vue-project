@@ -1,0 +1,18 @@
+1. Error Msg System... where element inside App.vue will watch for error msg commitment from the store
+with any kinds of store related errors. With a hand written title to point to what part of the project
+the error is connected to. The element will be "sniptool"? (i already have some so it will be easy to find)
+and it will stay there untill the btn close is pressed.
+
+2. Games Order (position they are standing when page is oppend) something with self ordered list (research
+how that works) if not newest game goest first and thats it.
+
+3. File drag long range detection for the custom file upload component. 3 stages: very long - dropzone is gray
+mid - dropzone is orage (footer color) and file in the dropzone red as it is now.
+And maybe some animation/image for inside.
+
+4. Transition for chaning backraunds on games.vue
+
+5. Gradients for the cards (if possible)
+
+6. Game tags in edit menu with colors and selected + adding extra tag option. That can be done with seperate
+array of key tag pairs.

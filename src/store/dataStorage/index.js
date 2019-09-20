@@ -270,6 +270,36 @@ export default {
           console.log(error)
           commit('setLoadingState', false)
         })
+    },
+
+    updateGame ({commit}, payload) {
+      const selectedGameKey = payload.selectedGameInfo.id
+      delete payload.selectedGameInfo.id
+      if (payload.uploadedImage) {
+        const uploadedImageName = payload.uploadedImage.name
+        const uploadedImageExt = uploadedImageName.slice(uploadedImageName.lastIndexOf('.'))
+
+        firebase.storage().
+        ref('games/' + selectedGameKey + '.' + uploadedImageExt).
+        put(payload.uploadedImage).
+        then(fileData => {
+          fileData.ref.getDownloadURL().then(url => {
+            payload.selectedGameInfo.imageUrl = url
+            firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).
+            catch(errorMsg => {
+              //Later log in a file on fire base and remove it from the console
+              console.log(errorMsg)
+            })
+          })
+        })
+      }
+      else {
+        firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).
+        catch(errorMsg => {
+          //Later log in a file on fire base and remove it from the console
+          console.log(errorMsg)
+        })
+      }
     }
   },
   getters: {

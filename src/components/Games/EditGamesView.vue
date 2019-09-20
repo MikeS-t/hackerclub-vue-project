@@ -114,23 +114,23 @@
           ></v-text-field>
         </div>
 
-        <div id="gameOrder">
-          <v-text-field
-            v-model="selectedGameObj.title"
-            label="Game Place"
-            clearable
-          ></v-text-field>
-        </div>
-
         <div id="gameTags">
           <v-select
-            v-model="select"
             :items="selectedGameObj.tags"
             item-text="name"
             label="Game Tags"
             chips
             tags
           ></v-select>
+        </div>
+
+        <div id="submitButton">
+          <v-btn
+            @click="onApplyChanges"
+            color="primary">
+            Приложи промените
+            <v-icon right dark>cloud_upload</v-icon>
+          </v-btn>
         </div>
 
       </div>
@@ -144,16 +144,19 @@
   export default {
     data() {
       return {
-        deleteMeLater: null,
         games: [],
         selectedGame: '',
         selectedGameObj: {},
         trailerURL: null,
         showTrailer: false,
-        uploadedImage: null
+        uploadedImage: null,
+        errorMsg: null
       }
     },
     computed: {
+      isFormValid () {
+        //Check if all validation match up
+      }
     },
     watch: {
       selectedGame(value) {
@@ -165,13 +168,22 @@
       }
     },
     methods: {
+      onApplyChanges () {
+        // if (this.isFormValid()) {
+        //   // Submmit an error msg
+        //   return
+        // }
+        this.$store.dispatch('updateGame', {
+          selectedGameInfo: this.selectedGameObj,
+          uploadedImage: this.uploadedImage
+        })
+      }
     },
     components: {
       appFileUpload: fileUpload
     },
     created() {
       this.games = this.$store.getters.getGames
-      this.selectedGameObj = this.games[0]
     }
   }
 </script>
@@ -199,8 +211,8 @@
   }
 
   #detailsFromContainer {
-    /*background: #00c853;*/
-    width: 63%;
+    background: rgba(0, 0, 0, 0.3);
+    width: 54vw;
     height: 100%;
     display: grid;
     grid-template-columns: 50% 50%;
@@ -209,8 +221,12 @@
       "title title"
       "creator description"
       "image description"
-      "trailer order"
-      "tags tags";
+      "trailer tags"
+      "submit submit";
+  }
+
+  #detailsFromContainer *{
+    font-size: 2.05vh;
   }
 
   #gameTitle {
@@ -232,6 +248,7 @@
     grid-area: image;
     align-self: center;
     margin-top: -9vh;
+    margin-left: 0.1vw;
   }
 
   #gameTrailer {
@@ -242,19 +259,18 @@
     height: 50px;
   }
 
-  #gameOrder {
-    grid-area: order;
-    align-self: center;
-    justify-self: center;
-    width: 60%;
-    height: 50px;
-  }
-
   #gameTags {
     grid-area: tags;
     align-self: center;
+    justify-self: start;
+    width: 100%;
+  }
+
+  #submitButton {
+    grid-area: submit;
+    align-self: center;
     justify-self: center;
-    height: 50px;
+    width: 30%;
   }
 
   .card {

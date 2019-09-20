@@ -97,7 +97,6 @@
         onFileDroped (event) {
           let selectedFile = event.dataTransfer.files[0]
           this.removeVisibleClass()
-          console.log(selectedFile)
           this.displayAndSaveImageInfo(selectedFile)
         }
       }
