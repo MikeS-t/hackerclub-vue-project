@@ -1,0 +1,252 @@
+/*This CSS styles are set for the Vuetify elements in this site they are set for different
+  components*/
+
+/*Everything*/
+
+.application {
+  line-height: 3.08vh; /*24px*/
+}
+
+/*Header.vue*/
+
+.v-toolbar__content {
+  height: 8vh!important;
+}
+
+.v-dialog:not(.v-dialog--fullscreen){
+  max-height: 100%!important;
+}
+
+
+/*Home.vue Carousel*/
+
+.v-jumbotron__image{
+  top: 1%!important;
+  left: 0!important;
+  width: 100%;
+  -webkit-transform: translate(0, 0)!important;
+  transform: translate(0, 0)!important;
+  max-height: 100%!important;
+  min-height: 40%!important;
+}
+
+.v-carousel__controls{
+  cursor: auto;
+}
+
+.v-carousel__controls__item{
+  height: 1.5vw!important;
+  width: 1.5vw!important;
+}
+
+.v-carousel__controls__item .v-btn__content .v-icon{
+  font-size: 1.2vw!important;
+}
+
+/*PriceList.vue*/
+
+.rightButton i, .leftButton i{
+  font-size: 2.5vw!important;
+}
+
+/*EditGameFroms + any other forms*/
+/*Textboxes*/
+
+.v-input {
+  margin-top: 2.05vh; /*16px*/
+  font-size: 2.05vh; /*16px*/
+}
+
+.v-input__slot {
+  margin-bottom: 1.03vh; /*8px*/
+}
+
+.v-text-field .v-input__slot::before {
+  height: 0.13vh; /*1px*/
+}
+
+.v-input input {
+  max-height: 4.11vh; /*32px*/
+}
+
+.v-label {
+  font-size: 2.05vh; /*16px*/
+  min-height: 1.03vh; /*8px*/
+}
+
+.v-icon {
+  font-size: 3.08vh; /*24px*/
+}
+
+.v-input__append-outer, .v-input__prepend-outer {
+  margin-bottom: 0.51vh; /*4px*/
+  margin-top: 0.51vh; /*4px*/
+  line-height: 2.05vh; /*16px*/
+}
+
+.v-input__prepend-outer {
+  margin-right: 0.625vw; /*9px*/
+}
+
+.v-input__icon {
+  height: 3.08vh; /*24px*/
+  width: 1.66vw; /*24px*/
+  min-width: 1.66vw; /*24px*/
+}
+
+.v-input .v-label {
+  height: 2.57vh; /*20px*/
+  line-height: 2.57vh; /*20px*/
+}
+
+.v-text-field input {
+  line-height: 2.57vh; /*20px*/
+  padding: 1.03vh 0; /*8px*/
+}
+
+.v-text-field .v-label {
+  top: 0.77vh; /*6px*/
+}
+
+.v-text-field .v-label--active {
+  transform: translateY(-2.31vh) scale(.75); /*18px*/
+}
+
+.v-textarea textarea {
+  min-height: 4.11vh; /*32px*/
+  line-height: 2.31vh; /*18px*/
+  padding: 1.03vh 0 1.03vh; /*8px*/
+  height: 15.42vh!important; /*120px*/
+}
+
+.v-chip{
+  border-radius: 3.6vh; /*28px*/
+  border: none;
+  font-size: 1.67vh; /*13px*/
+}
+
+.v-select__selections {
+  line-height: 2.31vh; /*18px*/
+}
+
+.v-chip--select-multi {
+  margin: 0.51vh 0.27vw 0.51vh 0; /*4px*/
+}
+
+.v-select.v-select--chips .v-select__selections {
+  min-height: 5.4vh; /*42px*/
+}
+
+.v-chip .v-chip__content {
+  border-radius: 3.6vh; /*28px*/
+  height: 4.11vh; /*32px*/
+  padding: 0 0.83vw; /*12px*/
+}
+
+.v-btn {
+  padding: 0 1.11vw; /*16px*/
+  height: 4.62vh;
+  margin: 0.77vh 0.55vw; /*6px 8px*/
+}
+
+.v-btn .v-icon--right {
+  margin-left: 1.11vw; /*16px*/
+}
+
+/*Dropdown lists of a select areas*/
+
+.v-menu__content {
+  max-height: 38.56vh!important; /*300px*/
+}
+
+.v-list {
+  padding: 1.03vh 0; /*8px*/
+  font-size: 1.8vh; /*14px*/
+}
+
+.v-list__tile {
+  font-size: 2.05vh; /*16px*/
+  height: 6.16vh; /*48px*/
+  padding: 0 1.11vw; /*16px*/
+}
+
+.v-list__tile__action, .v-list__tile__avatar {
+  min-width: 3.88vw; /*56px*/
+}
+
+.v-input--selection-controls {
+  padding: 0.51vh 0; /*4px*/
+}
+
+.v-input--selection-controls__input {
+  height: 3.08vh; /*24px*/
+  margin-right: 0.55vw; /*8px*/
+  width: 1.66vw; /*24px*/
+}
+
+.v-input--selection-controls__ripple {
+  height: 6.16vh; /*48px*/
+  width:  3.33vw; /*48px*/
+  left: -0.83vw; /*-12px*/
+  top: calc(50% - 3.08vh); /*24px*/
+}
+
+.v-messages {
+  font-size: 1.54vw; /*12px*/
+  min-height: 1.54vh; /*12px*/
+ }
+
+.v-list__tile__title {
+  height: 3.08vh; /*24px*/
+  line-height: 3.08vh; /*24px*/;
+}
+
+@media only screen and (max-width: 1440px) {
+  /*Home.vue Carousel*/
+  .v-carousel__controls__item{
+    height: 23px!important;
+    width: 23px!important;
+  }
+
+  .v-carousel__controls__item .v-btn__content .v-icon{
+    font-size: 18px!important;
+  }
+
+  /*PriceList.vue*/
+  .rightButton i, .leftButton i{
+    font-size: 36px!important;
+  }
+}
+
+@media only screen and (max-height: 700px) {
+  /*Header.vue*/
+  .v-toolbar__content {
+    height: 55px!important;
+  }
+}
+
+@media only screen and (max-width: 732px) {
+  /*Header.vue*/
+  .v-toolbar__content {
+    height: 55px!important;
+  }
+
+  /*Home.vue Carousel*/
+
+  .carousel{
+    height: 465px!important;
+  }
+
+  .v-jumbotron__image{
+    height: 300px!important;
+  }
+
+  .v-carousel__next, .v-carousel__prev{
+    top: 150px!important;
+  }
+
+  .v-carousel__controls{
+    height: 25px;
+  }
+
+}

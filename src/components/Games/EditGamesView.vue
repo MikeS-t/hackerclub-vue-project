@@ -1,14 +1,14 @@
 <template>
   <div id="editGamesContainer">
 
-    <v-select
+    <v-combobox
       class="dropDown"
       :items="games"
       v-model="selectedGame"
       label="Select a game"
       item-text="title"
       item-value="id"
-    ></v-select>
+    ></v-combobox>
 
     <div id="selectedGameDetailsContainer">
       <div class="card">
@@ -93,6 +93,7 @@
           <v-textarea
             v-model="selectedGameObj.description"
             auto-grow
+            height="16.58vh"
             clearable
             label="Description"
           ></v-textarea>
@@ -115,13 +116,15 @@
         </div>
 
         <div id="gameTags">
-          <v-select
-            :items="selectedGameObj.tags"
+          <v-combobox
+            v-model="selectedGameObj.tags"
+            :items="gameTags"
             item-text="name"
             label="Game Tags"
+            multiple
             chips
             tags
-          ></v-select>
+          ></v-combobox>
         </div>
 
         <div id="submitButton">
@@ -144,27 +147,63 @@
   export default {
     data() {
       return {
-        games: [],
-        selectedGame: '',
-        selectedGameObj: {},
         trailerURL: null,
         showTrailer: false,
         uploadedImage: null,
-        errorMsg: null
+        errorMsg: null,
+        gameTags: [
+          'Multiplayer',
+          'Single player',
+          'First person',
+          'Third person',
+          'Shooter',
+          'Builder',
+          'Team-based',
+          'MOBA',
+          'RPG',
+          'Action RPG',
+          'Cardgame',
+          'Strategy',
+          'Doungen crawler',
+          'Action adventure',
+          'Creative',
+          'Educational',
+          'Openworld',
+          'Suvival',
+          'Adventure',
+          'Horror',
+          'Sports',
+          'Add Custom Tag...'
+        ]
       }
     },
     computed: {
+      games() {
+        return this.$store.getters.getGames || {}
+      },
+      selectedGame () {
+        return this.games[0] || {}
+      },
+      selectedGameObj () {
+        return this.games[0] || {}
+      },
       isFormValid () {
         //Check if all validation match up
       }
     },
     watch: {
-      selectedGame(value) {
+      selectedGame (value) {
         this.selectedGameObj = this.games.find((game) => {
           return game.id === value
         })
 
         this.trailerURL = this.selectedGameObj.trailer
+      },
+      selectedGameObj (value) {
+        if (value.tags.includes('Add Custom Tag...')) {
+          console.log('found it')
+          this.selectedGameObj.tags.pop()
+        }
       }
     },
     methods: {
@@ -181,9 +220,6 @@
     },
     components: {
       appFileUpload: fileUpload
-    },
-    created() {
-      this.games = this.$store.getters.getGames
     }
   }
 </script>
@@ -215,40 +251,46 @@
     width: 54vw;
     height: 100%;
     display: grid;
-    grid-template-columns: 50% 50%;
-    grid-template-rows: 20% 20% 20% 20% 20%;
+    grid-template-columns: 46% 46% 8%;
+    grid-template-rows: 25% 20% 20% 20% 15%;
     grid-template-areas:
-      "title title"
-      "creator description"
-      "image description"
-      "trailer tags"
-      "submit submit";
+      "title title title"
+      "creator description ."
+      "image tags ."
+      "trailer tags ."
+      "submit submit submit";
   }
 
   #detailsFromContainer *{
-    font-size: 2.05vh;
+    font-size: 2.05vh; /*16px*/
   }
 
   #gameTitle {
     grid-area: title;
     justify-self: center;
-    width: 30%;
+    align-self: center;
+    width: 17vw; /*245px*/
   }
 
   #gameCreator {
     grid-area: creator;
-    align-self: center;
+    align-self: start;
     justify-self: center;
     width: 60%;
-    height: 50px;
+    height: 6.42vh; /*50px*/
+  }
+
+  #gameDescription {
+    grid-area: description;
+    width: 100%;
   }
 
   #gameImage {
     display: inline;
     grid-area: image;
     align-self: center;
-    margin-top: -9vh;
-    margin-left: 0.1vw;
+    margin-top: -10.5vh; /*81.69px*/
+    margin-left: 0.1vw; /*1.44px*/
   }
 
   #gameTrailer {
@@ -256,7 +298,8 @@
     align-self: center;
     justify-self: center;
     width: 60%;
-    height: 50px;
+    height: 6.42vh; /*50px*/
+    margin-bottom: .6vh; /*4.67px*/
   }
 
   #gameTags {
@@ -264,13 +307,14 @@
     align-self: center;
     justify-self: start;
     width: 100%;
+    height: 6.42vh; /*50px*/
   }
 
   #submitButton {
     grid-area: submit;
     align-self: center;
     justify-self: center;
-    width: 30%;
+    width: 17vw; /*245px*/
   }
 
   .card {

@@ -17,7 +17,7 @@
     >
     <div id="fileUpload">
       <v-text-field
-        v-model="uploadInfo"
+        v-model="imageName"
         :error-messages="errorMsg"
         placeholder="Upload an image"
         label=""
@@ -35,7 +35,6 @@
     export default {
       data() {
         return {
-          uploadInfo: '',
           errorMsg: '',
         }
       },
@@ -60,7 +59,7 @@
           }
 
           let fileSize = this.formatFileSize(file.size)
-          this.uploadInfo = file.name +
+          this.imageName = file.name +
             ' (' + fileSize + ')'
 
           const fileReader = new FileReader()
@@ -137,6 +136,15 @@
 
   #fileUpload {
     visibility: visible;
+    width: 14.93vw;  /*215px*/
+    height: 6.42vh;  /*50px*/
+    display: flex;
+    justify-items: center;
+  }
+
+  #fileUpload * {
+    font-size: 2.05vh; /*16px*/
+    min-height: 6.42vh;  /*50px*/
   }
 
 </style>
