@@ -30,6 +30,10 @@
 <style>
   @import url("./vuetifyCustomizations.css");
 
+  main {
+    min-height: 70vh;
+  }
+
   /*Some shared classes*/
 
   .loadContainer {

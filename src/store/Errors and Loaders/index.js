@@ -8,6 +8,7 @@ export default {
   },
   mutations: {
     setLoadingState(state, payload) {
+      // console.log('Loading state: ' + payload)
       state.loadingState = payload
     },
     setError(state, payload) {

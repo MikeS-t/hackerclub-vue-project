@@ -11,12 +11,17 @@ export default {
     galleryImages: [],
     lostGoods: [],
     games: [],
+    gameTagsArray: [],
     services: []
   },
 
   mutations: {
     setLoadedGames (state, payload) {
       state.games = payload
+    },
+
+    setGameTagsArray (state, payload) {
+      state.gameTagsArray = payload
     },
 
     setLoadedServices (state, payload) {
@@ -55,6 +60,30 @@ export default {
     //       .catch((error) => {
     //         console.log(error)
     //       })
+    //   })
+    // },
+
+    // modifyGames ({state}) {
+    //   state.games.shift()
+    //   state.games.forEach(game => {
+    //     let gameTags = []
+    //     game.tags.forEach(tag => {
+    //       if (tag) {
+    //         gameTags.push(tag)
+    //       }
+    //     })
+    //     firebase.database().ref('games').child(game.id + "/tags").set(gameTags).
+    //     catch(errorMsg => {
+    //       //Later log in a file on fire base and remove it from the console
+    //       console.log(errorMsg)
+    //     })
+    //   })
+    // },
+
+    // setGameTagsArray ({}, payload) {
+    //   firebase.database().ref('gameTagsArray').set(payload).
+    //   catch(errorMsg => {
+    //     console.log(errorMsg)
     //   })
     // },
 
@@ -140,21 +169,13 @@ export default {
           const gamesObj = data.val()
 
           Object.keys(gamesObj).forEach((gameKey) => {
-            const gameTags = []
-
-            Object.keys(gamesObj[gameKey].tags).forEach((tagKey) => {
-              gameTags.push({
-                name: gamesObj[gameKey].tags[tagKey].name,
-                color: gamesObj[gameKey].tags[tagKey].color
-              })
-            })
 
             gamesData.push({
               id: gameKey,
               title: gamesObj[gameKey].title,
               creator: gamesObj[gameKey].creator,
               description: gamesObj[gameKey].description,
-              tags: gameTags,
+              tags: gamesObj[gameKey].tags,
               imageUrl: gamesObj[gameKey].imageUrl,
               trailer: gamesObj[gameKey].trailer
             })
@@ -166,6 +187,19 @@ export default {
           console.log(error)
           commit('setLoadingState', false)
         })
+    },
+
+    loadGameTagsArray ({commit}) {
+      commit('setLoadingState', true)
+
+      firebase.database().ref('gameTagsArray').once('value').
+        then(data => {
+        commit('setGameTagsArray', data.val())
+        commit('setLoadingState', false)
+      }).catch(errorMsg => {
+        console.log(errorMsg)
+        commit('setLoadingState', false)
+      })
     },
 
     loadServices({commit}) {
@@ -306,12 +340,15 @@ export default {
     getTopNavItems(state) {
       return state.topNavItems
     },
+
     getServices(state) {
       return state.services
     },
+
     getDisplayedServices(state) {
       return state.services.slice(1, state.services.length)
     },
+
     getSelectedService(state) {
       return (serviceId) => {
         return state.services.find((service) => {
@@ -319,9 +356,15 @@ export default {
         })
       }
     },
+
     getGames(state) {
       return state.games
     },
+
+    getGameTagsArray (state) {
+      return state.gameTagsArray
+    },
+
     getSelectedGame(state) {
       return (gameTitle) => {
         return state.games.find((game) => {
@@ -329,9 +372,11 @@ export default {
         })
       }
     },
+
     getLostGoods(state) {
       return state.lostGoods
     },
+
     getGalleryImages(state) {
       return state.galleryImages
     }
