@@ -202,6 +202,28 @@ export default {
       })
     },
 
+    addGameTag ({commit, state}, payload) {
+      state.gameTagsArray.unshift(payload)
+
+      firebase.database().ref('gameTagsArray').set(state.gameTagsArray).
+      catch(errorMsg => {
+        //Later log in a file on fire base and remove it from the console
+        console.log(errorMsg)
+      })
+    },
+
+    removeGameTags ({commit, state}, payload) {
+      payload.forEach(tag => {
+        state.gameTagsArray = state.gameTagsArray.filter(e => e !== tag)
+      })
+
+      firebase.database().ref('gameTagsArray').set(state.gameTagsArray).
+      catch(errorMsg => {
+        //Later log in a file on fire base and remove it from the console
+        console.log(errorMsg)
+      })
+    },
+
     loadServices({commit}) {
       commit('setLoadingState', true)
       firebase.database().ref('services').once('value')

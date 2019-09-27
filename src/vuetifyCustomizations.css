@@ -137,10 +137,32 @@
   min-height: 5.4vh; /*42px*/
 }
 
+/*EditGamesView Chips Colors*/
+#detailsFromContainer  #gameTags .application .theme--dark.v-chip, .theme--dark .v-chip {
+  font-weight: 600;
+  color: white;
+}
+
+#detailsFromContainer  #gameTags .application .theme--dark.v-chip, .theme--dark .v-chip:nth-of-type(1) {
+  background: #ee3d39;
+}
+
+#detailsFromContainer  #gameTags .application .theme--dark.v-chip, .theme--dark .v-chip:nth-of-type(2) {
+  background: #ff7934;
+}
+
+#detailsFromContainer  #gameTags .application .theme--dark.v-chip, .theme--dark .v-chip:nth-of-type(3) {
+  background: #9604d7;
+}
+
+#detailsFromContainer  #gameTags .application .theme--dark.v-chip, .theme--dark .v-chip:nth-of-type(4) {
+  background: #424242;
+}
+
 .v-chip .v-chip__content {
   border-radius: 3.6vh; /*28px*/
   height: 4.11vh; /*32px*/
-  padding: 0 0.83vw; /*12px*/
+  padding: 0 0.7vw; /* 10.08px*/
 }
 
 .v-btn {
@@ -192,7 +214,7 @@
 }
 
 .v-messages {
-  font-size: 1.54vw; /*12px*/
+  font-size: 1.54vh; /*12px*/
   min-height: 1.54vh; /*12px*/
  }
 

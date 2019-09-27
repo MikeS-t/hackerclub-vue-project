@@ -29,7 +29,7 @@
           color="primary"
           hide-overlay
           lazy
-          @click.stop="showTrailer = true">
+          @click.native.stop="showTrailer = true">
           <v-icon left>visibility</v-icon>
           Trailer
         </v-btn>
@@ -37,7 +37,6 @@
         <!--Dialog window with the trailer-->
 
         <v-dialog
-          v-if="showTrailer"
           v-model="showTrailer"
           width="100vh">
           <div class="dialogContainer">
@@ -294,7 +293,7 @@
     }
 
     .trailerButton{
-      margin-top: -5px;
+      margin-top: -15px;
       font-size: 1.3rem;
       padding: 0 16px!important;
     }
