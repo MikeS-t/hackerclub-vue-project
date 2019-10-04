@@ -174,9 +174,11 @@
   }
 
   .tags {
+    height: 3.86vh; /*30px*/
     position: relative;
     margin-top: 2.78vh; /*21.6px*/
     margin-bottom: 0.7vw;
+    overflow: hidden;
   }
 
   .tags span {

@@ -1,7 +1,3 @@
-//import {games} from "./data/gameSeed"
-//import {services} from "./data/servicesSeed"
-// import {lostGoods} from "./data/lostGoodsSeed"
-//import {galleryImages} from "./data/galleryImagesSeed"
 import {topNavItems} from "./data/topNavItemsSeed"
 import * as firebase from 'firebase'
 
@@ -16,23 +12,23 @@ export default {
   },
 
   mutations: {
-    setLoadedGames (state, payload) {
+    setLoadedGames(state, payload) {
       state.games = payload
     },
 
-    setGameTagsArray (state, payload) {
+    setGameTagsArray(state, payload) {
       state.gameTagsArray = payload
     },
 
-    setLoadedServices (state, payload) {
+    setLoadedServices(state, payload) {
       state.services = payload
     },
 
-    setLoadedGalleryImages (state, payload) {
+    setLoadedGalleryImages(state, payload) {
       state.galleryImages = payload
     },
 
-    setLoadedLostGoods (state, payload) {
+    setLoadedLostGoods(state, payload) {
       state.lostGoods = payload
     }
   },
@@ -64,15 +60,11 @@ export default {
     // },
 
     // modifyGames ({state}) {
-    //   state.games.shift()
+    //   state.games.reverse()
     //   state.games.forEach(game => {
-    //     let gameTags = []
-    //     game.tags.forEach(tag => {
-    //       if (tag) {
-    //         gameTags.push(tag)
-    //       }
-    //     })
-    //     firebase.database().ref('games').child(game.id + "/tags").set(gameTags).
+    //     delete game.id
+    //
+    //     firebase.database().ref('games').push(game).
     //     catch(errorMsg => {
     //       //Later log in a file on fire base and remove it from the console
     //       console.log(errorMsg)
@@ -161,7 +153,7 @@ export default {
     //   })
     // },
 
-    loadGames ({commit}) {
+    loadGames({commit}) {
       commit('setLoadingState', true)
       firebase.database().ref('games').once('value')
         .then((data) => {
@@ -169,16 +161,17 @@ export default {
           const gamesObj = data.val()
 
           Object.keys(gamesObj).forEach((gameKey) => {
-
-            gamesData.push({
-              id: gameKey,
-              title: gamesObj[gameKey].title,
-              creator: gamesObj[gameKey].creator,
-              description: gamesObj[gameKey].description,
-              tags: gamesObj[gameKey].tags,
-              imageUrl: gamesObj[gameKey].imageUrl,
-              trailer: gamesObj[gameKey].trailer
-            })
+            if (!gamesObj[gameKey].isDeleted) {
+              gamesData.push({
+                id: gameKey,
+                title: gamesObj[gameKey].title,
+                creator: gamesObj[gameKey].creator,
+                description: gamesObj[gameKey].description,
+                tags: gamesObj[gameKey].tags,
+                imageUrl: gamesObj[gameKey].imageUrl,
+                trailer: gamesObj[gameKey].trailer
+              })
+            }
           })
           commit('setLoadedGames', gamesData)
           commit('setLoadingState', false)
@@ -189,11 +182,75 @@ export default {
         })
     },
 
-    loadGameTagsArray ({commit}) {
+    updateGame({}, payload) {
+      const selectedGameKey = payload.selectedGameInfo.id
+      delete payload.selectedGameInfo.id
+      if (payload.uploadedImage) {
+        const uploadedImageName = payload.uploadedImage.name
+        const uploadedImageExt = uploadedImageName.slice(uploadedImageName.lastIndexOf('.'))
+
+        firebase.storage().ref('games/' + selectedGameKey + '.' + uploadedImageExt).
+        put(payload.uploadedImage).
+        then(fileData => {
+          fileData.ref.getDownloadURL().
+          then(url => {
+            payload.selectedGameInfo.imageUrl = url
+            firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).catch(errorMsg => {
+              //Later log in a file on fire base and remove it from the console
+              console.log(errorMsg)
+            })
+          })
+        })
+      }
+      else {
+        firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).catch(errorMsg => {
+          //Later log in a file on fire base and remove it from the console
+          console.log(errorMsg)
+        })
+      }
+    },
+
+    addGame({state}, payload) {
+      state.games.push(payload.selectedGameInfo)
+
+      firebase.database().ref('games').push(payload.selectedGameInfo).
+      then(data => {
+        const newGameKey = data.key
+        const uploadedImageName = payload.uploadedImage.name
+        const uploadedImageExt = uploadedImageName.slice(uploadedImageName.lastIndexOf('.'))
+
+        firebase.storage().ref('games/' + newGameKey + '.' + uploadedImageExt).
+        put(payload.uploadedImage).
+        then(fileData => {
+          fileData.ref.getDownloadURL().
+          then(url => {
+            firebase.database().ref('games').child(newGameKey).update({imageUrl: url}).catch(errorMsg => {
+              //Later log in a file on fire base and remove it from the console
+              console.log(errorMsg)
+            })
+          })
+        })
+      }).catch(errorMsg => {
+        //Later log in a file on fire base and remove it from the console
+        console.log(errorMsg)
+      })
+    },
+
+    deleteGames({state}, payload) {
+      payload.forEach(game => {
+        state.games = state.games.filter(e => e.id !== game.id)
+        firebase.database().ref('games').child(game.id).update({isDeleted: true}).catch(errorMsg => {
+          //Later log in a file on fire base and remove it from the console
+          console.log(errorMsg)
+        })
+      })
+      state.games.reverse()
+    },
+
+    loadGameTagsArray({commit}) {
       commit('setLoadingState', true)
 
-      firebase.database().ref('gameTagsArray').once('value').
-        then(data => {
+      firebase.database().ref('gameTagsArray').once('value').then(data => {
         commit('setGameTagsArray', data.val())
         commit('setLoadingState', false)
       }).catch(errorMsg => {
@@ -202,23 +259,21 @@ export default {
       })
     },
 
-    addGameTag ({commit, state}, payload) {
+    addGameTag({state}, payload) {
       state.gameTagsArray.unshift(payload)
 
-      firebase.database().ref('gameTagsArray').set(state.gameTagsArray).
-      catch(errorMsg => {
+      firebase.database().ref('gameTagsArray').set(state.gameTagsArray).catch(errorMsg => {
         //Later log in a file on fire base and remove it from the console
         console.log(errorMsg)
       })
     },
 
-    removeGameTags ({commit, state}, payload) {
+    removeGameTags({commit, state}, payload) {
       payload.forEach(tag => {
         state.gameTagsArray = state.gameTagsArray.filter(e => e !== tag)
       })
 
-      firebase.database().ref('gameTagsArray').set(state.gameTagsArray).
-      catch(errorMsg => {
+      firebase.database().ref('gameTagsArray').set(state.gameTagsArray).catch(errorMsg => {
         //Later log in a file on fire base and remove it from the console
         console.log(errorMsg)
       })
@@ -278,7 +333,7 @@ export default {
         })
     },
 
-    loadGalleryImages ({commit}) {
+    loadGalleryImages({commit}) {
       commit('setLoadingState', true)
       firebase.database().ref('galleryImages').once('value')
         .then((data) => {
@@ -301,7 +356,7 @@ export default {
         })
     },
 
-    loadLostGoods ({commit}) {
+    loadLostGoods({commit}) {
       commit('setLoadingState', true)
       firebase.database().ref('lostGoods').once('value')
         .then((data) => {
@@ -326,37 +381,8 @@ export default {
           console.log(error)
           commit('setLoadingState', false)
         })
-    },
-
-    updateGame ({commit}, payload) {
-      const selectedGameKey = payload.selectedGameInfo.id
-      delete payload.selectedGameInfo.id
-      if (payload.uploadedImage) {
-        const uploadedImageName = payload.uploadedImage.name
-        const uploadedImageExt = uploadedImageName.slice(uploadedImageName.lastIndexOf('.'))
-
-        firebase.storage().
-        ref('games/' + selectedGameKey + '.' + uploadedImageExt).
-        put(payload.uploadedImage).
-        then(fileData => {
-          fileData.ref.getDownloadURL().then(url => {
-            payload.selectedGameInfo.imageUrl = url
-            firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).
-            catch(errorMsg => {
-              //Later log in a file on fire base and remove it from the console
-              console.log(errorMsg)
-            })
-          })
-        })
-      }
-      else {
-        firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).
-        catch(errorMsg => {
-          //Later log in a file on fire base and remove it from the console
-          console.log(errorMsg)
-        })
-      }
     }
+
   },
   getters: {
     getTopNavItems(state) {
@@ -380,10 +406,10 @@ export default {
     },
 
     getGames(state) {
-      return state.games
+      return state.games.reverse()
     },
 
-    getGameTagsArray (state) {
+    getGameTagsArray(state) {
       return state.gameTagsArray
     },
 

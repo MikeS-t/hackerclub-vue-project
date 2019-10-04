@@ -17,10 +17,9 @@
     >
     <div id="fileUpload">
       <v-text-field
-        v-model="imageName"
+        v-model="displayName"
         :error-messages="errorMsg"
-        placeholder="Upload an image"
-        label=""
+        placeholder="Качи изображение"
         prepend-icon="photo_size_select_actual"
         readonly
         @click.stop="pickImage"
@@ -36,11 +35,32 @@
       data() {
         return {
           errorMsg: '',
+          displayName: '',
+          isImageSelected: false
         }
       },
       props: {
         imageName: {
           type: String
+        },
+        nameReset: {
+          type: Boolean
+        }
+      },
+      watch: {
+        imageName: {
+          handler: function () {
+            if (!this.isImageSelected) {
+              this.displayName = this.imageName
+            }
+          },
+          immediate: true
+        },
+        nameReset: {
+          handler: function () {
+            this.displayName = this.imageName
+          },
+          immediate: true
         }
       },
       methods: {
@@ -58,8 +78,10 @@
             return false
           }
 
+          this.isImageSelected = true
+
           let fileSize = this.formatFileSize(file.size)
-          this.imageName = file.name +
+          this.displayName = file.name +
             ' (' + fileSize + ')'
 
           const fileReader = new FileReader()
