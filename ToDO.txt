@@ -17,5 +17,4 @@ And maybe some animation/image for inside.
 6. Game tags in edit menu with colors and selected + adding extra tag option. That can be done with seperate
 array of key tag pairs.
 
-7. Value initiation happends in computed !!!
- (fix that where is not like that)
+7. Use the snackbar component everywhere where i use snackbar!

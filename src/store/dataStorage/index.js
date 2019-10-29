@@ -195,7 +195,10 @@ export default {
           fileData.ref.getDownloadURL().
           then(url => {
             payload.selectedGameInfo.imageUrl = url
-            firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).catch(errorMsg => {
+            firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).
+            then(
+              payload.selectedGameInfo.id = selectedGameKey
+            ).catch(errorMsg => {
               //Later log in a file on fire base and remove it from the console
               console.log(errorMsg)
             })
@@ -203,7 +206,11 @@ export default {
         })
       }
       else {
-        firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).catch(errorMsg => {
+        firebase.database().ref('games').child(selectedGameKey).update(payload.selectedGameInfo).
+        then(
+          payload.selectedGameInfo.id = selectedGameKey
+        ).
+        catch(errorMsg => {
           //Later log in a file on fire base and remove it from the console
           console.log(errorMsg)
         })

@@ -22,20 +22,20 @@
       <v-combobox
         v-else
         class="dropDown"
-        v-model="deleteGameList"
+        v-model="removeGameList"
         :items="games"
         item-text="title"
         item-value="id"
         label="Игри за премахване"
         placeholder="Изберете тагове за премахване"
-        :error-messages="errorMsg.selectedGame"
-        @click="errorMsg.selectedGame = ''"
+        :error-messages="errorMsgs.selectedGame"
+        @click="errorMsgs.selectedGame = ''"
         counter="6"
         multiple
       ></v-combobox>
     </div>
 
-    <div id="editMode">
+    <div id="mode">
       <div class="checkbox">
         <v-checkbox
           v-model="addNewGameMode"
@@ -82,8 +82,8 @@
               placeholder="Добави заглавие"
               clearable
               counter="100"
-              :error-messages="errorMsg.title"
-              @click="errorMsg.title = ''"
+              :error-messages="errorMsgs.title"
+              @click="errorMsgs.title = ''"
             ></v-text-field>
           </div>
 
@@ -94,8 +94,8 @@
               label="Създател"
               clearable
               counter="100"
-              :error-messages="errorMsg.creator"
-              @click="errorMsg.creator = ''"
+              :error-messages="errorMsgs.creator"
+              @click="errorMsgs.creator = ''"
             ></v-text-field>
           </div>
 
@@ -108,15 +108,14 @@
               label="Описание"
               placeholder="Добави описание"
               counter="500"
-              :error-messages="errorMsg.description"
-              @click="errorMsg.description = ''"
+              :error-messages="errorMsgs.description"
+              @click="errorMsgs.description = ''"
             ></v-textarea>
           </div>
 
           <div id="gameImage">
             <app-file-upload
               :imageName="selectedGameObj.imageUrl"
-              :nameReset="uploadImageNameReset"
               @imageUrl="selectedGameObj.imageUrl = $event"
               @rawImage="uploadedImage = $event"
             ></app-file-upload>
@@ -129,9 +128,10 @@
               placeholder="Добави треилър URL"
               clearable
               counter="100"
-              :error-messages="errorMsg.trailer"
-              @click="errorMsg.trailer = ''"
-            ></v-text-field>
+              :error-messages="errorMsgs.trailer"
+              @click="errorMsgs.trailer = ''"
+              @focusout="extractYTKey">
+            </v-text-field>
           </div>
 
           <div id="gameTags">
@@ -143,8 +143,8 @@
               multiple
               chips
               tags
-              :error-messages="errorMsg.tags"
-              @click="errorMsg.tags = ''"
+              :error-messages="errorMsgs.tags"
+              @click="errorMsgs.tags = ''"
             ></v-combobox>
           </div>
 
@@ -179,8 +179,8 @@
                   placeholder="Въведете има на новия таг"
                   clearable
                   counter="100"
-                  :error-messages="errorMsg.newTag"
-                  @click="errorMsg.newTag = ''"
+                  :error-messages="errorMsgs.newTag"
+                  @click="errorMsgs.newTag = ''"
                 ></v-text-field>
               </div>
               <v-btn
@@ -218,31 +218,27 @@
       </v-form>
     </div>
 
-    <div v-else id="deleteGamesContainer">
-      <div  id="deleteGamesPreview">
-        <div
-          v-for="game in deleteGameList"
-          :key="game.id"
-          class="selectedGame">
-          <img class="selectedGameImg" :src="game.imageUrl" :alt="game.title">
-          <p class="selectedGameTitle">{{ game.title }}</p>
-        </div>
-      </div>
-      <v-btn
-        id="deleteButton"
-        @click="onApplyChanges"
-        color="primary">
-        Сигурни ли сте че искате да изтриете тези игри?
-        <v-icon right dark>delete_forever</v-icon>
-      </v-btn>
-    </div>
+    <app-remove-games
+      v-else
+      @snackbarMessage="
+      activateSnackbar($event);
+      removeGameList = []"
+      :removeGameList="removeGameList">
+    </app-remove-games>
+
+    <app-snackbar
+      :snackbarMessage="snackbarMessage"
+      :activate="showSnackbar">
+    </app-snackbar>
 
   </div>
 </template>
 
 <script>
+  import removeGames from './RemoveGames'
   import fileUpload from './FileUpload'
-  import gameCard from './gameCard'
+  import snackbar from '../../Shared/Snackbar'
+  import gameCard from '../GameCard'
 
 
   export default {
@@ -253,18 +249,20 @@
         editGamesMode: true,
         deleteGamesMode: false,
         //Image upload
-        uploadImageNameReset: false,
         uploadedImage: '',
         //Game info
         selectedGameObj: {},
-        deleteGameList: [],
+        removeGameList: [],
         //Game Tags
         showAddTagFrom: false,
         newTag: '',
         showRemoveTagFrom: false,
         removeTagList: [],
+        //Snackbar
+        snackbarMessage: '',
+        showSnackbar: false,
         //Error msgs
-        errorMsg: {
+        errorMsgs: {
           selectedGame: '',
           title: '',
           creator: '',
@@ -301,7 +299,7 @@
             tags: []
           }
 
-          this.uploadImageNameReset = !this.uploadImageNameReset
+          this.resetValidation()
         }
       },
       editGamesMode(value) {
@@ -310,19 +308,21 @@
           this.deleteGamesMode = false
 
           this.selectedGameObj = this.games[0]
-          this.uploadImageNameReset = !this.uploadImageNameReset
+          this.resetValidation()
         }
       },
       deleteGamesMode(value) {
         if (value) {
           this.addNewGameMode = false
           this.editGamesMode = false
+        } else {
+          this.removeGameList = []
         }
       },
-      deleteGameList() {
-        if (this.deleteGameList.length > 6) {
-          this.deleteGameList.pop()
-          this.errorMsg.selectedGame = 'Не може да селектирате повече от 6 игри наведнъж!'
+      removeGameList() {
+        if (this.removeGameList.length > 6) {
+          this.removeGameList.pop()
+          this.errorMsgs.selectedGame = 'Не може да селектирате повече от 6 игри наведнъж!'
         }
       },
       selectedGameObj: {
@@ -359,51 +359,66 @@
         let isFormValid = true
 
         if (!this.selectedGameObj.title) {
-          this.errorMsg.title = requiredMsg
+          this.errorMsgs.title = requiredMsg
           isFormValid = false
         } else if (this.selectedGameObj.title.length > 100) {
-          this.errorMsg.title = lenght100Msg
+          this.errorMsgs.title = lenght100Msg
           isFormValid = false
         }
 
         if (!this.selectedGameObj.creator) {
-          this.errorMsg.creator = requiredMsg
+          this.errorMsgs.creator = requiredMsg
           isFormValid = false
         } else if (this.selectedGameObj.creator.length > 100) {
-          this.errorMsg.creator = lenght100Msg
+          this.errorMsgs.creator = lenght100Msg
           isFormValid = false
         }
 
         if (!this.selectedGameObj.description) {
-          this.errorMsg.description = requiredMsg
+          this.errorMsgs.description = requiredMsg
           isFormValid = false
-        } else if (this.selectedGameObj.description.length > 100) {
-          this.errorMsg.description = 'Това поле трябва да съдържа по-малко от 500 символа!'
+        } else if (this.selectedGameObj.description.length > 500) {
+          this.errorMsgs.description = 'Това поле трябва да съдържа по-малко от 500 символа!'
           isFormValid = false
         }
 
-        if (!this.uploadedImage) {
+        if (!this.selectedGameObj.imageUrl && this.deleteGamesMode === false) {
           this.selectedGameObj.imageUrl = requiredMsg
           isFormValid = false
         }
 
         if (!this.selectedGameObj.trailer) {
-          this.errorMsg.trailer = requiredMsg
+          this.errorMsgs.trailer = requiredMsg
           isFormValid = false
-        } else if (this.selectedGameObj.trailer.length > 100) {
-          this.errorMsg.trailer = lenght100Msg
+        } else if (this.selectedGameObj.trailer.length > 11) {
+          this.errorMsgs.trailer = 'Това поле трябва да съдържа 11 символа! '
           isFormValid = false
         }
 
         if (this.selectedGameObj.tags.length === 0) {
-          this.errorMsg.tags = requiredMsg
+          this.errorMsgs.tags = requiredMsg
           isFormValid = false
         } else if (this.selectedGameObj.tags.length > 4) {
-          this.errorMsg.tags = 'Не може да селектирате повече от 4 тага!'
+          this.errorMsgs.tags = 'Не може да селектирате повече от 4 тага!'
           isFormValid = false
         }
 
         return isFormValid
+      },
+      resetValidation() {
+        this.errorMsgs = {
+          selectedGame: '',
+          title: '',
+          creator: '',
+          description: '',
+          trailer: '',
+          tags: '',
+          newTag: ''
+        }
+      },
+      activateSnackbar(snackbarMsg) {
+        this.snackbarMessage = snackbarMsg
+        this.showSnackbar = !this.showSnackbar
       },
       onApplyChanges() {
         if (this.isFormValid()) {
@@ -412,24 +427,26 @@
               selectedGameInfo: this.selectedGameObj,
               uploadedImage: this.uploadedImage
             })
+
+            this.activateSnackbar('Успешно променихте \n' + this.selectedGameObj.title)
           } else if (this.addNewGameMode) {
             this.$store.dispatch('addGame', {
               selectedGameInfo: this.selectedGameObj,
               uploadedImage: this.uploadedImage
             })
+
+            this.activateSnackbar('Успешно добавихте \n' + this.selectedGameObj.title)
           }
-        }
-        if (this.deleteGamesMode) {
-          this.$store.dispatch('deleteGames', this.deleteGameList)
-          this.deleteGameList = []
         }
       },
       onAddTag() {
         if (this.newTag.length > 100) {
-          this.errorMsg.newTag = 'Това поле трябва да съдържа по-малко от 100 символа!'
+          this.errorMsgs.newTag = 'Това поле трябва да съдържа по-малко от 100 символа!'
         } else if (this.newTag) {
           this.$store.dispatch('addGameTag', this.newTag)
           this.showAddTagFrom = false
+          this.activateSnackbar('Успешно добавихте \n"' + this.newTag + '"')
+          this.newTag = ''
         }
         else {
           this.showAddTagFrom = false
@@ -438,12 +455,28 @@
       onRemoveTags() {
         if (this.removeTagList) {
           this.$store.dispatch('removeGameTags', this.removeTagList)
+
+          let deletedTagsList = ''
+          this.removeTagList.forEach(tag => {
+            deletedTagsList += '\n"' + tag + '"'
+          })
+          this.activateSnackbar('Успешно изтрихте' + deletedTagsList)
         }
         this.showRemoveTagFrom = false
+      },
+      extractYTKey() {
+        let inputString = this.selectedGameObj.trailer
+
+        if(inputString.startsWith('https://www.youtube.com/watch')) {
+          let startPos = inputString.indexOf('=')
+          this.selectedGameObj.trailer = inputString.substring(startPos + 1, startPos + 12)
+        }
       }
     },
     components: {
+      appRemoveGames: removeGames,
       appFileUpload: fileUpload,
+      appSnackbar: snackbar,
       appGameCard: gameCard
     },
     created() {
@@ -480,7 +513,7 @@
     justify-content: space-between;
   }
 
-  #editMode {
+  #mode {
     display: flex;
     justify-content: center;
     margin-top: -3vh;
@@ -567,7 +600,7 @@
   #deleteGamesContainer {
     background: rgba(0, 0, 0, 0.3);
     width: 80vw;
-    min-height: 64.26vh;
+    min-height: 67vh;
     margin: 0 auto 5vh;
     display: flex;
     flex-direction: column;

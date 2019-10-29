@@ -42,23 +42,17 @@
       props: {
         imageName: {
           type: String
-        },
-        nameReset: {
-          type: Boolean
         }
       },
       watch: {
         imageName: {
-          handler: function () {
-            if (!this.isImageSelected) {
-              this.displayName = this.imageName
+          handler: function (value) {
+            if (value.startsWith('https://firebasestorage.googleapis.com') ||
+              value === 'Това поле е задължително!') {
+              this.displayName = value
+            } else if (!value) {
+              this.displayName = ''
             }
-          },
-          immediate: true
-        },
-        nameReset: {
-          handler: function () {
-            this.displayName = this.imageName
           },
           immediate: true
         }

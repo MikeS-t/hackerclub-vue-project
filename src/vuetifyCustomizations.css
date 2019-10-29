@@ -112,6 +112,15 @@
   transform: translateY(-2.31vh) scale(.75); /*18px*/
 }
 
+.v-text-field .v-counter {
+  margin-left:  0.56vw; /*8px*/
+}
+
+.v-counter {
+  font-size: 1.54vh; /*12px*/
+  min-height: 1.54vh; /*12px*/
+}
+
 .v-textarea textarea {
   min-height: 4.11vh; /*32px*/
   line-height: 2.31vh; /*18px*/
@@ -169,6 +178,7 @@
   padding: 0 1.11vw; /*16px*/
   height: 4.62vh;
   margin: 0.77vh 0.55vw; /*6px 8px*/
+  font-size: 1.8vh; /*14px*/
 }
 
 .v-btn .v-icon--right {
@@ -216,11 +226,41 @@
 .v-messages {
   font-size: 1.54vh; /*12px*/
   min-height: 1.54vh; /*12px*/
- }
+}
 
 .v-list__tile__title {
   height: 3.08vh; /*24px*/
-  line-height: 3.08vh; /*24px*/;
+  line-height: 3.08vh; /*24px*/
+}
+
+/*Snackbar*/
+.v-snack--left, .v-snack--right {
+  margin: 0 1.67vw; /*24px*/
+}
+
+.v-snack {
+  font-size: 2.05vh; /*16px*/
+}
+
+.v-snack__wrapper {
+  max-width: 39.44vw; /*568px*/
+  min-width: 20vw; /*288px*/
+  border-radius: 0.26vh; /*2px*/
+}
+
+.v-snack--multi-line .v-snack__content {
+  height: auto!important;
+  min-height: 10.28vh; /*80px*/
+  padding: 3.08vh; /*24px*/
+}
+
+.v-snack__content .v-btn:first-of-type {
+  padding: 1.028vh; /*8px*/
+  margin: 0 0 0 1.67vw; /*24px*/
+}
+
+.v-snack__content .v-btn__content {
+  margin: -0.26vh; /*2px*/
 }
 
 @media only screen and (max-width: 1440px) {

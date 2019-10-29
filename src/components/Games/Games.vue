@@ -57,7 +57,7 @@
 </template>
 
 <script>
-  import gameCard from './gameCard'
+  import gameCard from './GameCard'
 
   export default {
     data() {
@@ -68,7 +68,8 @@
         paginationLength: null,
         bgImgUrl: null,
         trailerURL: null,
-        showTrailer: false
+        showTrailer: false,
+        gamesImgLoaded: false
       }
     },
     computed: {
@@ -103,8 +104,7 @@
     created() {
       if (!this.$store.getters.getGames.length) {
         this.$store.dispatch('loadGames')
-      }
-      else {
+      } else {
         this.paginationLength = Math.ceil(this.$store.getters.getGames.length / 6)
       }
     }

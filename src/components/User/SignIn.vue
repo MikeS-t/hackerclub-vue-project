@@ -84,7 +84,6 @@
         this.$store.dispatch('checkUserVerification')
         let userEmailNotVerifyed = ''
         if(!this.$store.getters.isUserVerified){
-          console.log(this.$store.getters.isUserVerified)
           userEmailNotVerifyed = '\nЕмайлът ви не е потвърден.'
         }
 

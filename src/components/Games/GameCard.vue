@@ -2,7 +2,18 @@
   <div @mouseenter="onGameHover"
        class="card">
     <div class="poster">
-      <img :src="gameInfoObj.imageUrl" :alt="gameInfoObj.title">
+      <img
+        v-show="isImgLoaded"
+        @load="imgLoaded"
+        :src="gameInfoObj.imageUrl"
+        :alt="gameInfoObj.title">
+      <v-progress-circular
+        v-show="!isImgLoaded"
+        :size="100"
+        :width="15"
+        indeterminate
+        color="primary">
+      </v-progress-circular>
     </div>
     <div class="details">
       <h2>{{ gameInfoObj.title }}
@@ -69,7 +80,8 @@
           'accent',
           'custom',
           'secondary'
-        ]
+        ],
+        isImgLoaded: false
       }
     },
     props: {
@@ -78,19 +90,13 @@
         required: true
       }
     },
-    computed: {
-
-    },
-    watch: {
-
-    },
     methods: {
       onGameHover() {
         this.$emit('bgImgUrl', this.gameInfoObj.imageUrl)
+      },
+      imgLoaded() {
+        this.isImgLoaded = true
       }
-    },
-    created() {
-
     }
   }
 </script>
@@ -112,6 +118,13 @@
   .card .poster {
     position: relative;
     overflow: hidden;
+  }
+
+  .poster {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20.8vw;
   }
 
   .card .poster img {
