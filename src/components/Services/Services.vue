@@ -1,9 +1,8 @@
 <template>
-  <v-layout v-if="loading" class="loadContainer">
-
+  <!--Loader component-->
+  <div v-if="loading" class="loadContainer">
     <app-loading></app-loading>
-
-  </v-layout>
+  </div>
 
   <v-container fluid class="minHeight minWidth" v-else>
     <v-layout column>
@@ -30,7 +29,7 @@
                     <h3 class="cardTitle mb-0 white--text">{{ service.title }}</h3>
                     <v-flex offset-lg1>
                       <div
-                        class="mt-3 serviceSubDescriptionFormat">
+                        class="serviceSubDescriptionFormat">
                         {{ service.subDescription }}
                       </div>
                     </v-flex>
@@ -76,56 +75,60 @@
 <style scoped>
   .card{
     display: flex;
-    min-height: 230px;
-    height: 15.97vw;
-    width: 95vw;
-    margin: 2vw auto;
+    min-height: 29.56vh; /*230px*/
+    height: 29.55vh; /*229.96px*/
+    width: 95vw; /*1368px*/
+    margin: 3.7vh auto; /*28.8px*/
   }
 
   .cardImg{
-    margin-left: 1vw;
+    margin-left: 1vw; /*25.92px*/
   }
 
   .cardTitle{
-    font-size: 1.8vw;
+    font-size: 3.33vh; /*25.92px*/
   }
 
   .serviceSubDescriptionFormat {
-    font-size: 1.5vw;
+    margin-top: 2.05vh; /*16px*/
+    font-size: 2.78vh; /*21.6px*/
+    line-height: 1;
   }
 
   .moreInfoButton, .moreInfoButton:hover, .moreInfoButton:focus
   {
     position: absolute;
-    right: -10px;
+    right: -0.69vw; /*10px*/
     bottom: 0;
-    padding: 0 1.7vw;
-    font-size: 1.2vw;
-    height: 5vh;
+    padding: 0 1.7vw; /*24.48px*/
+    font-size: 2.22vh; /*17.28px*/
+    height: 5vh; /*38.9px*/
   }
 
   .moreInfoButton i{
-    font-size: 1.2vw!important;
+    font-size: 2.05vh!important; /*16px*/
   }
 
-  @media only screen and (max-width: 1400px) {
-    .card{
-      min-height: inherit;
+  @media only screen and (max-width: 1263px) {
+    .card {
       height: auto;
+      width: 90vw;
+      margin-bottom: 20px;
     }
 
     .cardTitle{
-      font-size: 1.8rem;
+      font-size: 26px;
     }
 
     .serviceSubDescriptionFormat {
-      font-size: 1.4rem;
+      font-size: 22px;
+      margin-bottom: 30px;
     }
 
     .moreInfoButton, .moreInfoButton:hover, .moreInfoButton:focus
     {
       position: absolute;
-      right: -10px;
+      right: 3px;
       bottom: 0;
       padding: 0 24px;
       font-size: 14px;
@@ -133,13 +136,12 @@
     }
 
     .moreInfoButton i{
-      font-size: 14px!important;
+      font-size: 16px!important;
+    }
+
+    .cardImg{
+      min-height: 200px;
     }
   }
 
-  @media only screen and (max-width: 1263px) {
-    .cardImg{
-      min-height: 35vh;
-    }
-  }
 </style>

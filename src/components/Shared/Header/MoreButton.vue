@@ -54,7 +54,7 @@
   }
 
   .dropDownMenu *{
-    font-size: 1.2vw.5!important;
+    font-size: 1.2vw!important;
   }
 
   @media only screen and (max-width: 1440px) {

@@ -121,15 +121,15 @@
 
   .serviceImage{
     display: block;
-    height: 69.9vh;
+    height: 69.9vh; /*543.82px*/
     width: 100%;
   }
 
   .titleContainer{
     position:absolute;
     top:0;
-    border: 52.45vh solid transparent;
-    border-left: 45vw solid rgba(52, 73, 94, .55);
+    border: 52.45vh solid transparent; /*408px*/
+    border-left: 45vw solid rgba(52, 73, 94, .55); /*648px*/
     border-bottom:0;
   }
 
@@ -137,14 +137,15 @@
 
   .titleContainer p{
     position: absolute;
-    top: -20vh;
-    left: -43.5vw;
+    top: -20vh; /*-155.6px*/
+    left: -43.5vw; /*-626.4px*/
     z-index: 2;
     margin: 0;
     text-align: center;
-    font-size: 2.917vw;
+    font-size: 5.4vh; /*42px*/
     font-weight: 600;
-    max-width: 23vw;
+    line-height: 1.3;
+    max-width: 23vw; /*331.2px*/
     color: white;
     text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
   }
@@ -152,10 +153,10 @@
   .descriptionContainer{
     position: absolute;
     display: flex;
-    top: 52.4vh;
+    top: 52.4vh; /*407.67px*/
     left: 0;
     right: 0;
-    height: 17.5vh;
+    height: 17.5vh; /*136.15px*/
     background-color: rgba(52, 73, 94, .55);
   }
 
@@ -164,8 +165,8 @@
   .descriptionContainer p{
     margin: 0 auto;
     text-align: center;
-    width: 110vh;
-    font-size: 1.41vw;
+    width: 59.43vw; /*855.8px*/
+    font-size: 2.57vh; /*20px*/
     white-space: pre-line;
     align-self: center;
   }
@@ -174,11 +175,12 @@
     width: 28%;
     margin: 1.5% auto;
     text-align: center;
-    font-size: 2.43vw;
-    padding: 5px 50px;
-    border-radius: 50px;
+    line-height: 100%;
+    font-size: 4.5vh; /*35px*/
+    padding: 1.5vh 6.42vh; /*11.67px 50px*/
+    border-radius: 6.42vh; /*50px*/
     color: white;
-    box-shadow: 0 3px 6px black;
+    box-shadow: 0 .38vh 0 black; /*3px*/
     text-shadow: 2px 3px rgba(0, 0, 0, 0.5);
     background-image: linear-gradient(to bottom, #ee3d39, #f34e37, #f85d35, #fc6b34, #ff7934);
   }
@@ -333,16 +335,21 @@
       margin: 0 auto;
     }
 
+    .serviceImage{
+      max-height: 350px;
+    }
+
     .descriptionContainer{
       position: relative;
       top: 0;
       height: auto;
+      padding: 15px 15px;
     }
 
     .priceLabel{
-      width: 60%;
-      font-size: 2rem;
-      padding: 10px 10px;
+      width: 90vw;
+      font-size: 35px;
+      padding: 10px  20px;
       margin: 20px auto;
     }
 

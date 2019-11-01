@@ -18,3 +18,5 @@ And maybe some animation/image for inside.
 array of key tag pairs.
 
 7. Use the snackbar component everywhere where i use snackbar!
+
+8. Nice animation for init loading

@@ -49,6 +49,11 @@
   font-size: 2.5vw!important;
 }
 
+/*Services.vue cards*/
+.v-card__title {
+  padding: 2.05vh; /*16px*/
+}
+
 /*EditGameFroms + any other forms*/
 /*Textboxes*/
 
