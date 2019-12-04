@@ -1,6 +1,6 @@
 <template>
   <v-menu
-    class="hidden-sm-and-down"
+    class="hiddenUnder1220"
     bottom
     close-on-click
     origin="top center 0"
@@ -40,6 +40,10 @@
 
 <style scoped>
 
+  .hiddenUnder1220 {
+    display: inline;
+  }
+
   .moreButton{
     width: 2vw;
     height: 3.5vh;
@@ -69,6 +73,14 @@
     .dropDownMenu *{
       font-size: 16px!important;
     }
+  }
+
+  @media only screen and (max-width: 1220px) {
+
+    .hiddenUnder1220 {
+      display: none !important;
+    }
+
   }
 
 </style>

@@ -26,8 +26,10 @@
   width: 100%;
   -webkit-transform: translate(0, 0)!important;
   transform: translate(0, 0)!important;
-  max-height: 100%!important;
-  min-height: 40%!important;
+  /*max-height: 100%!important;*/
+  /*min-height: 40%!important;*/
+  /*min-height: calc(100% - 165px) !important;*/
+  height: 100% !important;
 }
 
 .v-carousel__controls{
@@ -285,6 +287,18 @@
   }
 }
 
+@media only screen and (max-width: 1220px) {
+
+  .v-icon {
+    font-size: 24px;
+  }
+
+  .v-list__tile__action, .v-list__tile__avatar {
+    min-width: 56px;
+  }
+
+}
+
 @media only screen and (max-height: 700px) {
   /*Header.vue*/
   .v-toolbar__content {
@@ -292,20 +306,13 @@
   }
 }
 
-@media only screen and (max-width: 732px) {
-  /*Header.vue*/
-  .v-toolbar__content {
-    height: 55px!important;
-  }
-
-  /*Home.vue Carousel*/
-
+@media only screen and (max-width: 900px) {
   .carousel{
-    height: 465px!important;
+  height: 69.9vh !important;
   }
 
   .v-jumbotron__image{
-    height: 300px!important;
+    height: calc(100% - 165px) !important;
   }
 
   .v-carousel__next, .v-carousel__prev{
@@ -315,5 +322,29 @@
   .v-carousel__controls{
     height: 25px;
   }
+}
+
+@media only screen and (max-width: 732px) {
+  /*Header.vue*/
+  .v-toolbar__content {
+    height: 55px!important;
+  }
+
+
+  /*.carousel{*/
+    /*height: 69.9vh !important;*/
+  /*}*/
+
+  /*.v-jumbotron__image{*/
+    /*height: calc(100% - 165px) !important;*/
+  /*}*/
+
+  /*.v-carousel__next, .v-carousel__prev{*/
+    /*top: 150px!important;*/
+  /*}*/
+
+  /*.v-carousel__controls{*/
+    /*height: 25px;*/
+  /*}*/
 
 }

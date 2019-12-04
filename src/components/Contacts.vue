@@ -26,7 +26,10 @@
                 <img src="../../static/Contacts/Irina.jpg" alt="avatar">
               </v-avatar>
               <div>
-                <v-icon class="marginRight">alternate_email</v-icon>
+                <img
+                  src="../../static/Footer/EmailIcon.png"
+                  alt="Email Icon"
+                  class="icon marginRight">
                 <span>horus.horus@abv.bg</span>
               </div>
               <div>
@@ -35,14 +38,16 @@
                    target="_blank">
                   <img
                     src="../../static/Footer/facebook-icon.png"
-                    alt="facebook"
-                    class="facebookIcon marginRight"
-                  >
+                    alt="Facebook Icon"
+                    class="icon marginRight">
                   <span>Irina Horus</span>
                 </a>
               </div>
               <div>
-                <v-icon class="marginRight">contact_phone</v-icon>
+                <img
+                  src="../../static/Footer/PhoneIcon.png"
+                  alt="Phone Icon"
+                  class="icon marginRight">
                 <span class="centerText">+359 879 601 528</span>
               </div>
             </v-layout>
@@ -62,7 +67,10 @@
                 <img src="../../static/Contacts/Nikola.jpg" alt="avatar">
               </v-avatar>
               <div>
-                <v-icon class="marginRight">alternate_email</v-icon>
+                <img
+                  src="../../static/Footer/EmailIcon.png"
+                  alt="Email Icon"
+                  class="icon marginRight">
                 <span>iam4ever@abv.bg</span>
               </div>
               <div>
@@ -71,14 +79,17 @@
                    target="_blank">
                   <img
                     src="../../static/Footer/facebook-icon.png"
-                    alt="facebook"
-                    class="facebookIcon marginRight"
+                    alt="Facebook Icon"
+                    class="icon marginRight"
                   >
                   <span>Никола Григоров</span>
                 </a>
               </div>
               <div>
-                <v-icon class="marginRight">contact_phone</v-icon>
+                <img
+                  src="../../static/Footer/PhoneIcon.png"
+                  alt="Phone Icon"
+                  class="icon marginRight">
                 <span>+359 887 832 055</span>
               </div>
             </v-layout>
@@ -241,11 +252,12 @@
     font-size: 1.07vw;
   }
 
-  .facebookIcon {
+  .icon {
     width: 1.7vw;
     min-width: 24px;
     height: 1.7vw;
     min-height: 24px;
+    margin-bottom: -0.51vh; /*-4px*/
   }
 
   /*Helper classes*/
@@ -316,6 +328,11 @@
     }
   }
 
+  @media only screen and (max-width: 1150px) {
+    .workTimeContainer {
+      width: 320px;
+    }
+  }
 
   @media only screen and (max-width: 700px) {
     .hidden{
@@ -329,6 +346,7 @@
     .workTimeContainer{
       width: 320px;
       margin: auto;
+      padding-top: 10px;
       border-radius: 25px;
       background-image: linear-gradient(to top, #ee3d39, #f34e37, #f85d35, #fc6b34, #ff7934);
     }

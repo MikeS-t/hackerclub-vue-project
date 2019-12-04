@@ -1,13 +1,12 @@
 <template>
-  <!--Loader component-->
 
+  <!--Loader component-->
   <div v-if="loading" class="loadContainer">
     <app-loading></app-loading>
   </div>
 
-  <div v-else id="editGamesContainer">
+  <div v-else id="modifyGamesContainer">
 
-    <div id="gameSelect">
       <v-combobox
         v-if="editGamesMode || addNewGameMode"
         v-model="selectedGameObj"
@@ -33,7 +32,7 @@
         counter="6"
         multiple
       ></v-combobox>
-    </div>
+
 
     <div id="mode">
       <div class="checkbox">
@@ -494,7 +493,7 @@
 </script>
 
 <style scoped>
-  #editGamesContainer {
+  #modifyGamesContainer {
     min-height: 86.5vh;
     display: flex;
     flex-direction: column;

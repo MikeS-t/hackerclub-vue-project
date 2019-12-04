@@ -9,12 +9,12 @@
 
       <!--Hamburger menu-->
       <v-toolbar-side-icon
-        class="hidden-md-and-up"
+        class="hiddenAbove1220"
         @click.stop="sideMenuToggle"
       ></v-toolbar-side-icon>
 
       <!--Home Logo Button-->
-      <v-spacer class="hidden-md-and-up"></v-spacer>
+      <v-spacer class="hiddenAbove1220"></v-spacer>
       <router-link
         to="/"
         tag="span"
@@ -27,7 +27,7 @@
 
       <!--Menu Items-->
       <v-spacer></v-spacer>
-      <v-toolbar-items class="hidden-sm-and-down" name="topNavBar">
+      <v-toolbar-items class="hiddenUnder1220" name="topNavBar">
         <v-btn flat large
                class="topNavItems"
                v-for="item in topNavItems"
@@ -39,7 +39,7 @@
 
         <!--Register / Profile Buttons-->
         <v-btn
-          class="hidden-sm-and-down topNavItems"
+          class="hiddenUnder1220 topNavItems"
           v-if="!userIsAuthenticated"
           flat
           large
@@ -51,7 +51,7 @@
       </v-toolbar-items>
 
       <v-menu
-        class="hidden-sm-and-down"
+        class="hiddenUnder1220"
         v-if="userIsAuthenticated"
         bottom
         close-on-click
@@ -281,6 +281,14 @@
 
   @import url('https://fonts.googleapis.com/css?family=Marmelad&subset=cyrillic');
 
+  .hiddenAbove1220 {
+    display: none;
+  }
+
+  .hiddenUnder1220 {
+    display: inline;
+  }
+
   .wrapper {
     position: relative;
     z-index: 1;
@@ -360,6 +368,18 @@
     .dropDownMenu *{
       font-size: 16px!important;
     }
+  }
+
+  @media only screen and (max-width: 1220px) {
+
+    .hiddenAbove1220 {
+      display: inline;
+    }
+
+    .hiddenUnder1220 {
+      display: none;
+    }
+
   }
 
   @media only screen and (max-width: 732px) {

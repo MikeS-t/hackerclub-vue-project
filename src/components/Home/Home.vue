@@ -33,7 +33,7 @@
   export default {
     data () {
       return {
-        carouselAutoPlay: true,
+        carouselAutoPlay: false,
         photoCaption: '',
         carouselIndex: null
       }
@@ -85,6 +85,7 @@
     bottom: 50px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
+    line-height: 1.5;
     padding: 30px;
     width: 100%;
     cursor: auto;
@@ -104,11 +105,10 @@
     }
   }
 
-  @media only screen and (max-width: 732px) {
+  @media only screen and (max-width: 900px) {
     .carousel
     {
       min-height: 465px;
-      max-height: 465px;
     }
 
     .photoCaptionContainer
@@ -122,7 +122,7 @@
   @media only screen and (max-width: 356px) {
     .photoCaptionContainer
     {
-      font-size: 2.21rem;
+      font-size: 35.36px;
     }
   }
 </style>

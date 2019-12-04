@@ -93,7 +93,7 @@
 
   .wrapper {
     position: relative;
-    color: black;
+    color: white;
     overflow: hidden;
     z-index: 2;
     height: 22vh;
@@ -102,6 +102,7 @@
   .label {
     color: white;
     font-size: 1.15vw;
+    font-weight: bold;
     border-radius: 3vw;
     padding-bottom: 0.5vh;
     padding-top: 0.5vh;
@@ -154,7 +155,7 @@
 
   .contactsFBLabel {
     text-decoration: none;
-    color: black;
+    color: white;
   }
 
   @media only screen and (max-width: 1440px) {
@@ -164,7 +165,6 @@
       border-radius: 25px;
       padding-top: 5px;
       margin: auto auto 5px;
-      text-shadow: .5px .5px white;
     }
 
     .Contacts p {

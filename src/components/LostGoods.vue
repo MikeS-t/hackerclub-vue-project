@@ -128,12 +128,12 @@
     border-radius: 1.39vw;
   }
 
-  .cardImg{
+  .cardImg {
     height: 14vw;
     min-height: 200px;
   }
 
-  .cardTitle{
+  .cardTitle {
     font-size: 1.7vw;
   }
 
@@ -190,7 +190,7 @@
 
     .cardTitle{
       font-size: 24px;
-      margin-top: -14px;
+      /*margin-top: -14px;*/
     }
 
     .dateLabel{
@@ -218,6 +218,12 @@
 
     .contactsLink i{
       font-size: 24px!important;
+    }
+  }
+
+  @media only screen and (max-width: 1440px) {
+    .infoMessage {
+      line-height: 1.3;
     }
   }
 

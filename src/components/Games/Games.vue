@@ -7,11 +7,9 @@
 
   <div v-else>
 
-    <router-link :to="'/editGames'">
-      <img src="../../../static/Shared/editIcon.png"
-           alt="editView"
-           id="editIcon">
-    </router-link>
+    <app-modify-icon
+      linkTo="modifyGames">
+    </app-modify-icon>
 
     <!--Dynamic Background-->
 
@@ -58,6 +56,7 @@
 
 <script>
   import gameCard from './GameCard'
+  import modifyIcon from '../Shared/ModifyIcon'
 
   export default {
     data() {
@@ -99,7 +98,8 @@
       }
     },
     components: {
-      appGameCard: gameCard
+      appGameCard: gameCard,
+      appModifyIcon: modifyIcon
     },
     created() {
       if (!this.$store.getters.getGames.length) {
@@ -113,17 +113,6 @@
 
 <style scoped>
   @import url('https://fonts.googleapis.com/css?family=Kanit|Roboto|Prosto+One&subset=cyrillic');
-
-  #editIcon {
-    width: 3vw;
-    min-width: 40px;
-    height: 5vh;
-    min-height: 30px;
-    position: absolute;
-    right: .2%;
-    cursor: pointer;
-    z-index: 5;
-  }
 
   .background {
     position: absolute;

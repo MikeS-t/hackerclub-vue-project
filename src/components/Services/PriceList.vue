@@ -184,9 +184,8 @@
     min-width: 330px;
     height: 67vh;
     min-height: 520px;
-    margin-top: 0.8%;
-    margin-bottom: 0.8%;
     overflow: hidden;
+    margin: 1.5vh 0;
   }
 
   .rows {
@@ -297,6 +296,36 @@
 
     .serviceName, .servicePrice {
       font-size: 1.3rem;
+    }
+  }
+
+  @media only screen and (max-width: 1380px) {
+    .priceListColumn {
+      margin-left: 5vw;
+      margin-right: 5vw;
+    }
+  }
+
+  @media only screen and (max-width: 1000px) {
+    .priceListColumn {
+      border-radius: 50px;
+    }
+  }
+
+  @media only screen and (max-width: 875px) {
+    .priceListColumn {
+      margin-left: 10px;
+      margin-right: 10px;
+    }
+  }
+
+  @media only screen and (max-width: 699px) {
+    .priceListColumn:first-of-type {
+      margin-top: 30px;
+    }
+
+    .priceListColumn:last-of-type {
+      margin-bottom: 20px;
     }
   }
 

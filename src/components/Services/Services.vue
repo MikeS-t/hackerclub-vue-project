@@ -5,6 +5,10 @@
   </div>
 
   <v-container fluid class="minHeight minWidth" v-else>
+    <app-modify-icon
+      linkTo="modifyServices">
+    </app-modify-icon>
+
     <v-layout column>
       <v-flex xs12>
         <v-card
@@ -26,7 +30,7 @@
               <v-flex xs12 lg7>
                 <v-card-title>
                   <div>
-                    <h3 class="cardTitle mb-0 white--text">{{ service.title }}</h3>
+                    <h3 class="cardTitle white--text">{{ service.title }}</h3>
                     <v-flex offset-lg1>
                       <div
                         class="serviceSubDescriptionFormat">
@@ -55,6 +59,8 @@
 </template>
 
 <script>
+  import modifyIcon from '../Shared/ModifyIcon'
+
   export default {
     computed: {
       services() {
@@ -63,6 +69,9 @@
       loading() {
         return this.$store.getters.getLoadingState
       }
+    },
+    components: {
+      appModifyIcon: modifyIcon
     },
     created() {
       if (!this.$store.getters.getServices.length){
@@ -73,6 +82,7 @@
 </script>
 
 <style scoped>
+
   .card{
     display: flex;
     min-height: 29.56vh; /*230px*/
@@ -142,6 +152,15 @@
     .cardImg{
       min-height: 200px;
     }
+  }
+
+  @media only screen and (max-height: 570px) {
+
+    .cardTitle{
+      margin-top: 10px;
+      margin-bottom: 15px;
+    }
+
   }
 
 </style>

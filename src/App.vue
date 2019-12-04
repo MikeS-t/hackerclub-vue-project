@@ -31,7 +31,7 @@
   @import url("./vuetifyCustomizations.css");
 
   main {
-    min-height: 70vh;
+    min-height: 69.9vh;
   }
 
   /*Some shared classes*/

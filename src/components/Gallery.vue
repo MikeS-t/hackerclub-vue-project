@@ -456,7 +456,7 @@
     }
 
     .welcomeText {
-      font-size: 15px;
+      font-size: 18px;
       margin: 0;
     }
 

@@ -172,7 +172,7 @@
   }
 
   .priceLabel{
-    width: 28%;
+    width: 28vw;
     margin: 1.5% auto;
     text-align: center;
     line-height: 100%;
@@ -281,9 +281,23 @@
     .priceListsContainer{
       height: 320px;
     }
+
+  }
+
+  @media only screen and (max-height: 800px) {
+
+    .priceLabel{
+    font-size: 20px;
+    }
+
   }
 
   @media only screen and (max-width: 750px) {
+
+    .priceLabel {
+      text-shadow: none;
+      width: 38vw;
+    }
 
     .priceListsContainer{
       flex-direction: column;
@@ -303,7 +317,7 @@
     }
 
     .serviceName, .servicePrice {
-      font-size: 1.3rem;
+      font-size: 20.8px;
     }
 
     .rows {
@@ -313,7 +327,7 @@
 
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 1100px) {
 
     .titleContainer{
       display: flex;
