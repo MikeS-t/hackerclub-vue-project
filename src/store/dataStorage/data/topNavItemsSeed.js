@@ -8,7 +8,7 @@ export const topNavItems =
       {icon: 'archive', title: 'Забравени вещи', link: '/lostGoods'},
       {icon: 'panorama', title: 'Галерия', link: '/gallery'},
       {icon: 'sentiment_satisfied_alt', title: 'За нас', link: '/services/-LnieIPpUlmIIbplTZ5j/'},
-      {icon: 'archive', title: 'Razrabotka', link: '/editGames'},
+      {icon: 'sync_alt', title: 'Уеб сокет', link: '/KPComponent'}
     ],
     moreButtonStartIndex: 4
   }

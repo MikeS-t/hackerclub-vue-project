@@ -6,10 +6,9 @@
   </v-layout>
 
   <div v-else>
-
-    <app-modify-icon
-      linkTo="modifyGames">
-    </app-modify-icon>
+    <!--<app-modify-icon-->
+      <!--linkTo="modifyGames">-->
+    <!--</app-modify-icon>-->
 
     <!--Dynamic Background-->
 

@@ -28,7 +28,9 @@
 </script>
 
 <style>
+  @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons");
   @import url("./vuetifyCustomizations.css");
+
 
   main {
     min-height: 69.9vh;

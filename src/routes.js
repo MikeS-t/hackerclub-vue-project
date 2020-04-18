@@ -10,6 +10,7 @@ import Contacts from './components/Contacts.vue'
 import Booking from './components/Booking.vue'
 import LostGoods from './components/LostGoods.vue'
 import Gallery from './components/Gallery.vue'
+import KPComponent from './components/KPComponent.vue'
 
 export const routes = [
   { path: '/', name: 'Home', component: Home },
@@ -22,5 +23,6 @@ export const routes = [
   { path: '/contacts', name: 'Contacts', component: Contacts },
   { path: '/booking', name: 'Booking', component: Booking },
   { path: '/lostGoods', name: 'LostGoods', component: LostGoods },
+  { path: '/KPComponent', name: 'KPComponent', component: KPComponent },
   { path: '/gallery', name: 'Gallery', component: Gallery }
 ];

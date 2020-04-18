@@ -5,9 +5,9 @@
   </div>
 
   <v-container fluid class="minHeight minWidth" v-else>
-    <app-modify-icon
-      linkTo="modifyServices">
-    </app-modify-icon>
+    <!--<app-modify-icon-->
+      <!--linkTo="modifyServices">-->
+    <!--</app-modify-icon>-->
 
     <v-layout column>
       <v-flex xs12>
