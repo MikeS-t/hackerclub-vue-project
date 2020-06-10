@@ -5,7 +5,6 @@
         <p v-for="user in users">
           <span v-if="user.isCurrentUser"><b>{{ user.username }}</b></span>
           <span v-else>{{ user.username }}</span>
-          <!--{{ user.username }}-->
         </p>
       </div>
       <div id="selectionPanel">
