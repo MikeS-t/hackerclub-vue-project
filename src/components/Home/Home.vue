@@ -4,11 +4,11 @@
     <app-loading></app-loading>
 
   </v-layout>
-    <v-container fluid class="wrapper noPadding" v-else>
+    <v-container fluid class="noPadding" v-else>
       <v-layout row>
         <v-flex xs12>
           <v-carousel
-            class="carousel"
+            id="carousel"
             :cycle="carouselAutoPlay"
             @mouseenter.native="carouselAutoPlay = false"
             @mouseleave.native="carouselAutoPlay = true"
@@ -33,7 +33,7 @@
   export default {
     data () {
       return {
-        carouselAutoPlay: false,
+        carouselAutoPlay: true,
         photoCaption: '',
         carouselIndex: null
       }
@@ -68,61 +68,61 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   @import url('https://fonts.googleapis.com/css?family=Roboto+Mono');
 
-  .carousel
+  #carousel
   {
-    min-height: 69.9vh;
+    height: 67vh;
     cursor: pointer;
-  }
 
-  .photoCaptionContainer{
-    display: flex;
-    justify-content: center;
-    position: absolute;
-    height: 10vh;
-    bottom: 50px;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    line-height: 1.5;
-    padding: 30px;
-    width: 100%;
-    cursor: auto;
-  }
+    .photoCaptionContainer{
+      display: flex;
+      justify-content: center;
+      position: absolute;
+      height: 10vh;
+      bottom: 6.5vh;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: white;
+      line-height: 1.5;
+      padding: 30px;
+      width: 100%;
+      cursor: auto;
 
-  .photoCaption{
-    align-self: center;
-    text-align: center;
-    font-size: 2.5vw;
-    text-shadow: 0 2px 2px black;
-    font-family: 'Roboto Mono', monospace;
+      .photoCaption{
+        align-self: center;
+        text-align: center;
+        font-size: 2.5vw;
+        text-shadow: 0 2px 2px black;
+        font-family: 'Roboto Mono', monospace;
+      }
+    }
   }
 
   @media only screen and (max-width: 1440px) {
-    .photoCaption{
-      font-size: 2.5rem;
+    #carousel .photoCaptionContainer .photoCaption{
+      font-size: 2.5rem !important;
     }
   }
 
   @media only screen and (max-width: 900px) {
-    .carousel
+    #carousel
     {
       min-height: 465px;
-    }
 
-    .photoCaptionContainer
-    {
-      height: 135px;
-      font-size: 2.5rem;
-      bottom: 25px;
+      .photoCaptionContainer
+      {
+        height: 135px;
+        font-size: 2.5rem !important;
+        bottom: 25px;
+      }
     }
   }
 
   @media only screen and (max-width: 356px) {
-    .photoCaptionContainer
+    #carousel .photoCaptionContainer
     {
-      font-size: 35.36px;
+      font-size: 35.36px !important;
     }
   }
 </style>

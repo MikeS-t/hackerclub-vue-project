@@ -1,368 +1,311 @@
 <template>
-  <div class="contactsWrapper">
+  <div id="wrapper">
 
     <!--Google map-->
 
     <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d611.1073276265756!2d27.88550933382021!3d43.23187006973773!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a4552252cc0075%3A0xa0ad53a1e317dd80!2z0JjQvdGC0LXRgNC90LXRgiDQutC70YPQsSDQpdCQ0JrQldCg!5e0!3m2!1sen!2sbg!4v1532095785002"
       allowfullscreen
-      class="map hidden">
+      id="map">
     </iframe>
 
-    <!--The grid container for the page-->
-
-    <v-container fluid class="noPadding shapesGrid">
-
-      <!--First info box-->
-
-      <v-layout xs12 md5 lg3 row>
-        <v-spacer class="hidden"></v-spacer>
-        <div class="displayShape shapeMarginRight accent">
-          <v-container fluid>
-            <v-layout xs12 align-center column fill-height>
-              <v-avatar
-                class="avatar"
-                size="100">
-                <img src="../../static/Contacts/Irina.jpg" alt="avatar">
-              </v-avatar>
-              <div>
-                <img
-                  src="../../static/Footer/EmailIcon.png"
-                  alt="Email Icon"
-                  class="icon marginRight">
-                <span>horus.horus@abv.bg</span>
-              </div>
-              <div>
-                <a href="https://www.facebook.com/horus.centre"
-                   class="clearText"
-                   target="_blank">
-                  <img
-                    src="../../static/Footer/facebook-icon.png"
-                    alt="Facebook Icon"
-                    class="icon marginRight">
-                  <span>Irina Horus</span>
-                </a>
-              </div>
-              <div>
-                <img
-                  src="../../static/Footer/PhoneIcon.png"
-                  alt="Phone Icon"
-                  class="icon marginRight">
-                <span class="centerText">+359 879 601 528</span>
-              </div>
-            </v-layout>
-          </v-container>
+    <div id="card1" class="card">
+      <img src="../../static/Contacts/Irina.jpg" alt="avatar1">
+      <div class="contactInfoContainer">
+        <div class="contactInfoRow">
+          <img src="../../static/Footer/EmailIcon.png" alt="Email icon">
+          <span>hacker2@abv.bg</span>
         </div>
-      </v-layout>
-
-      <!--Second info box-->
-
-      <v-layout row justify-space-between fill-height>
-        <div class="displayShape shapeMarginLeft primary">
-          <v-container fluid>
-            <v-layout xs12 align-center column fill-height>
-              <v-avatar
-                class="avatar"
-                size="100">
-                <img src="../../static/Contacts/Nikola.jpg" alt="avatar">
-              </v-avatar>
-              <div>
-                <img
-                  src="../../static/Footer/EmailIcon.png"
-                  alt="Email Icon"
-                  class="icon marginRight">
-                <span>iam4ever@abv.bg</span>
-              </div>
-              <div>
-                <a href="https://www.facebook.com/nikola.grigorov3"
-                   class="clearText"
-                   target="_blank">
-                  <img
-                    src="../../static/Footer/facebook-icon.png"
-                    alt="Facebook Icon"
-                    class="icon marginRight"
-                  >
-                  <span>Никола Григоров</span>
-                </a>
-              </div>
-              <div>
-                <img
-                  src="../../static/Footer/PhoneIcon.png"
-                  alt="Phone Icon"
-                  class="icon marginRight">
-                <span>+359 887 832 055</span>
-              </div>
-            </v-layout>
-          </v-container>
+        <div class="contactInfoRow">
+          <a href="https://www.facebook.com/horus.centre" target="_blank">
+            <img  src="../../static/Footer/facebook-icon.png" alt="Facebook icon">
+            <span>Ирина Хорус</span>
+          </a>
         </div>
-      </v-layout>
-
-      <v-layout row justify-end>
-        <div class="workTimeContainer">
-          <p>Работно време:</p>
-          <p><b>ВСЕКИ ДЕН</b> <br>от <b>10:00</b> до <b>19:00</b> часа</p>
-          <p>Обедна почивка от <b>12:00</b> до <b>13:00</b> часа</p>
-          <p>(във Вторник, Сряда, Четвъртък, Петък и Неделя)</p>
+        <div class="contactInfoRow">
+          <img src="../../static/Footer/PhoneIcon.png" alt="Phone Icon">
+          <span>+359 879 601 528</span>
         </div>
-      </v-layout>
+      </div>
+    </div>
 
-      <!--Google Maps button for small devices-->
+    <div id="card2" class="card">
+      <img src="../../static/Contacts/Nikola.jpg" alt="avatar2">
+      <div class="contactInfoContainer">
+        <div class="contactInfoRow">
+          <img src="../../static/Footer/EmailIcon.png" alt="Email icon">
+          <span>hacker2@abv.bg</span>
+        </div>
+        <div class="contactInfoRow">
+          <a href="https://www.facebook.com/nikola.grigorov3" target="_blank">
+            <img  src="../../static/Footer/facebook-icon.png" alt="Facebook icon">
+            <span>Никола Григоров</span>
+          </a>
+        </div>
+        <div class="contactInfoRow">
+          <img src="../../static/Footer/PhoneIcon.png" alt="Phone Icon">
+          <span>+359 887 832 055</span>
+        </div>
+      </div>
+    </div>
 
-      <v-layout row justify-center>
-        <a href="https://goo.gl/maps/thnDHn1hWRz"
-           class="showMapMarginAuto"
-           target="_blank">
-          <v-btn
-            large
-            round
-            color="success">
-            <b>Покажи карта</b>
-          </v-btn>
-        </a>
-      </v-layout>
+    <div id="workTimeContainer">
+      <p>Работно време:</p>
+      <p><b>ВСЕКИ ДЕН</b> <br>от <b>10:00</b> до <b>19:00</b> часа</p>
+      <p>Обедна почивка от <b>12:00</b> до <b>13:00</b> часа</p>
+      <p>(във Вторник, Сряда, Четвъртък, Петък и Неделя)</p>
+    </div>
 
-    </v-container>
+    <a href="https://goo.gl/maps/thnDHn1hWRz" id="showMapButton" target="_blank">
+      <v-btn large round>
+        <b>Покажи на картата</b>
+      </v-btn>
+    </a>
+
   </div>
 </template>
 
-<style scoped>
-  .contactsWrapper {
-    min-height: 92vh;
-    min-width: 265px;
-    position: relative;
-  }
+<style lang="scss" scoped>
+  @import "../sharedVariables";
 
-
-  .map {
-    position: absolute;
+  #wrapper {
     width: 100vw;
-    height: 100%;
-    border: 0;
-  }
-
-  .shapesGrid{
-    min-height: 92vh;
-  }
-
-  /*Info boxes*/
-
-  .displayShape {
+    height: 92vh;
     position: relative;
-    width: 17.37vw;
-    min-width: 250px;
-    height: 21vw;
-    min-height: 300px;
-    margin: 2.2vh 0;
-    border-radius: 50% / 10%;
-    text-align: center;
-    box-shadow: 0 0.35vw 1.2vw rgba(0, 0, 0, 0.5);
-    transition: 2s;
-    font-size: 1.12vw;
-  }
+    display: flex;
+    flex-direction: column;
 
-  .displayShape:hover {
-    width: 34.73vw;
-    min-width: 500px;
-  }
+    #map {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
 
-  .displayShape * {
-    position: relative;
-  }
+    .card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      width: 17.37vw;
+      min-width: 250px;
+      height: 21vw;
+      min-height: 300px;
+      margin: 2.2vh 0;
+      border-radius: 50% / 10%;
+      box-shadow: 0 .35vw 1.2vw rgba(0, 0, 0, 0.5);
+      transition: 2s;
 
-  .displayShape div {
-    margin-top: 0.8vh;
-  }
+      &:before {
+        content: '';
+        position: absolute;
+        top: 10%;
+        bottom: 10%;
+        right: -5%;
+        left: -5%;
+        background: inherit;
+        border-radius: 5% / 50%;
+      }
 
-  .displayShape span {
-    text-decoration: none;
-    line-height: 2.08vw;
-    vertical-align: bottom;
-    color: white;
-  }
+      img {
+        position: relative;
+        height: 6.95vw;
+        min-height: 100px;
+        width: 6.95vw;
+        min-width: 100px;
+        border-radius: 50%;
+      }
 
-  .displayShape a {
-    text-decoration: none;
-  }
+      .contactInfoContainer {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        width: 12vw;
+        min-width: 165px;
 
-  .displayShape i{
-   font-size: 1.7vw!important;
-  }
+        .contactInfoRow {
+          display: flex;
+          align-items: center;
+          margin-top: 1vh;
 
-  .displayShape:before {
-    content: '';
-    position: absolute;
-    top: 10%;
-    bottom: 10%;
-    right: -5%;
-    left: -5%;
-    background: inherit;
-    border-radius: 5% / 50%;
-  }
+          &:first-of-type {
+            margin-top: 2.5vh;
+          }
 
-  .avatar{
-    height: 6.95vw!important;
-    min-height: 100px;
-    width: 6.95vw!important;
-    min-width: 100px;
-  }
+          img {
+            width: 1.7vw;
+            min-width: 24px;
+            height: 1.7vw;
+            min-height: 24px;
+          }
 
-  .avatar img{
-    min-height: 100px!important;
-    min-width: 100px!important;
-  }
+          a {
+            display: flex;
+          }
 
-  .workTimeContainer{
-    width: 27.8vw;
-    height: 10.42vw;
-    min-height: 150px;
-    background-image: radial-gradient(circle, #ffffff, #ededed, #dbdbdb, #cacaca, #b9b9b9);
-    box-shadow: 0 0.12vh 0.14vw rgba(0, 0, 0, 0.2);
-    z-index: 9999;
-    margin-top: -9%;
-    margin-bottom: 1%;
-    margin-right: 0.6%;
-    align-self: flex-end;
-    color: black;
-  }
+          span {
+            font-size: 1.15vw;
+            color: black;
+            margin-left: .5vw;
+          }
+        }
+      }
+    }
 
-  .workTimeContainer p{
-    text-align: center;
-    text-shadow: 0.2px 0.2px rgba(0, 0, 0, 0.2);
-  }
+    #card1 {
+      align-self: flex-end;
+      background-image: linear-gradient(to bottom,
+        darken($midColor, 5%),
+        mix($midColor, $secondary),
+        $secondary);
+      margin-right: 6.5vw;
+      margin-top: 5vh;
+    }
 
-  .workTimeContainer p:nth-of-type(1){
-    margin: 2% 0 0;
-    font-size: 1.7vw;
-    font-weight: 600;
-    text-shadow: 0.5px 0.5px rgba(0, 0, 0, 0.2);
-  }
+    #card2 {
+      margin-left: 6.5vw;
+      background-image: linear-gradient(to top,
+        $primary,
+        $midColor,
+        mix($midColor, $secondary),
+        $secondary);
+    }
 
-  .workTimeContainer p:nth-of-type(2){
-    margin: 1% 0 0;
-    font-size: 1.17vw;
-  }
+    #workTimeContainer {
+      position: absolute;
+      width: 27.8vw;
+      min-width: 350px;
+      height: 24.6vh;
+      min-height: 150px;
+      bottom: 15px;
+      right: 15px;
+      background-image: radial-gradient(circle, #ffffff, #ededed, #dbdbdb, #cacaca, #b9b9b9);
+      box-shadow: 0 .35vw .5vw rgba(0, 0, 0, 0.5);
+      transition: 2s;
 
-  .workTimeContainer p:nth-of-type(3){
-    margin: 1% 0 0;
-    font-size: 1.07vw;
-  }
+      p {
+        color: black;
+        text-align: center;
+        font-size: 1.07vw;
+        text-shadow: 0.2px 0.2px rgba(0, 0, 0, 0.2);
 
-  .workTimeContainer p:nth-of-type(4){
-    margin: -4px 0 0;
-    font-size: 1.07vw;
-  }
+        &:nth-of-type(1) {
+          margin-top: 3.3vh;
+          margin-bottom: 2vh;
+          font-size: 1.7vw;
+          font-weight: 600;
+          text-shadow: 0.02vh 0.02vh rgba(0, 0, 0, 0.2);
+        }
 
-  .icon {
-    width: 1.7vw;
-    min-width: 24px;
-    height: 1.7vw;
-    min-height: 24px;
-    margin-bottom: -0.51vh; /*-4px*/
-  }
+        &:nth-of-type(2) {
+          margin-bottom: 1vh;
+          font-size: 1.17vw;
+        }
 
-  /*Helper classes*/
+        &:nth-of-type(3) {
+          margin: 1vh 0 0;
+        }
 
-  .shapeMarginRight {
-    margin-right: 5vw;
-  }
+        &:nth-of-type(4) {
+          margin: -.5vh 0;
+        }
+      }
+    }
 
-  .shapeMarginLeft {
-    margin-left: 5vw;
-  }
-
-  .showMapMarginAuto {
-    display: none;
-    margin: 3% auto auto;
-    text-decoration: none;
-  }
-
-  .marginRight {
-    margin-right: 5px;
+    #showMapButton {
+      display: none;
+    }
   }
 
   @media only screen and (max-width: 1440px) {
-    .displayShape {
-      margin: 20px 0;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
-      font-size: 16px;
-    }
 
-    .displayShape div {
-      margin-top: 7px;
-    }
+    #wrapper {
+      .card {
+        box-shadow: 0 5px 17px rgba(0, 0, 0, 0.5);
 
-    .displayShape span {
-      line-height: 30px;
-    }
+        .contactInfoContainer .contactInfoRow span {
+          font-size: 16px;
+          margin-left: 7px;
+        }
+      }
 
-    .displayShape i{
-      font-size: 24px!important;
-    }
+      #workTimeContainer p {
+        font-size: 13px;
+        text-shadow: 0.2px 0.2px rgba(0, 0, 0, 0.2);
 
-    .workTimeContainer{
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    }
+        &:nth-of-type(1) {
+          font-size: 22px;
+        }
 
-    .workTimeContainer p:nth-of-type(1){
-      font-size: 1.7rem;
-    }
-
-    .workTimeContainer p:nth-of-type(2){
-      font-size: 1.2rem;
-    }
-
-    .workTimeContainer p:nth-of-type(3){
-      font-size: 1.1rem;
-    }
-
-    .workTimeContainer p:nth-of-type(4){
-      font-size: 1.1rem;
-    }
-
-    .shapeMarginRight {
-      margin-right: 5vw;
-    }
-
-    .shapeMarginLeft {
-      margin-left: 5vw;
+        &:nth-of-type(2) {
+          font-size: 16px;
+        }
+      }
     }
   }
 
-  @media only screen and (max-width: 1150px) {
-    .workTimeContainer {
-      width: 320px;
-    }
-  }
+  @media only screen and (max-width: 900px) {
 
-  @media only screen and (max-width: 700px) {
-    .hidden{
-      display: none;
-    }
+    #wrapper {
+      justify-content: center !important;
+      align-items: center !important;
 
-    .displayShape {
-      margin: 20px auto;
-    }
+      #map {
+        display: none;
+      }
 
-    .workTimeContainer{
-      width: 320px;
-      margin: auto;
-      padding-top: 10px;
-      border-radius: 25px;
-      background-image: linear-gradient(to top, #ee3d39, #f34e37, #f85d35, #fc6b34, #ff7934);
-    }
+      .card {
+        margin: 30px 0!important;
+      }
 
-    .workTimeContainer p:nth-of-type(3){
-      margin: 0;
-      font-size: 1rem;
-    }
+      #card1 {
+        align-self: unset;
+      }
 
-    .workTimeContainer p:nth-of-type(4){
-      margin: -4px 0 0;
-      font-size: 0.8rem;
-    }
+      #workTimeContainer{
+        position: relative;
+        margin-top: 20px;
+        height: 150px;
+        border-radius: 25px;
+        bottom: unset;
+        right: unset;
+        background-image: linear-gradient(to top,
+          $primary,
+          mix($primary, $midColor),
+          $midColor,
+          mix($midColor, $secondary),
+          $secondary);
 
-    .showMapMarginAuto {
-      display: inherit;
+        p{
+          &:nth-of-type(1) {
+            font-size: 25px;
+            text-shadow: 0.5px 0.5px rgba(0, 0, 0, 0.2);
+            margin-top: 13px;
+            margin-bottom: 10px;
+          }
+
+          &:nth-of-type(2) {
+            font-size: 18px;
+            margin: 0;
+          }
+
+          &:nth-of-type(3) {
+            margin: 0;
+          }
+        }
+      }
+
+      #showMapButton {
+        display: inherit;
+        margin: 20px 0;
+
+        button {
+          font-size: 15px;
+          padding: 0 30px;
+          background-color: $success;
+        }
+      }
     }
   }
 </style>

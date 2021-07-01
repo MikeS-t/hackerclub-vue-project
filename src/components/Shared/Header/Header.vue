@@ -1,11 +1,8 @@
 <template>
-  <div class="wrapper">
+  <div id="wrapper">
 
     <!--Top Navigation Menu-->
-    <v-toolbar
-      class="topNav"
-      dark
-      color="primary">
+    <v-toolbar id="topNav">
 
       <!--Hamburger menu-->
       <v-toolbar-side-icon
@@ -15,13 +12,10 @@
 
       <!--Home Logo Button-->
       <v-spacer class="hiddenAbove1220"></v-spacer>
-      <router-link
-        to="/"
-        tag="span"
-        style="cursor: pointer">
+      <router-link to="/" tag="span" id="logoLink">
         <img
           src="../../../../static/MiniLogo.png"
-          class="miniLogo"
+          id="miniLogo"
           alt="MiniHackerLogo">
       </router-link>
 
@@ -59,7 +53,7 @@
         transition="fade-transition">
 
         <v-btn
-          class="topNavItems"
+          class="hiddenUnder1220 topNavItems"
           flat large
           slot="activator"
           dark>
@@ -67,7 +61,7 @@
           <span class="topNavItemsText">Профил</span>
         </v-btn>
 
-        <v-list class="dropDownMenu">
+        <v-list id="dropDownMenu">
           <v-list-tile
             @click="showChangePasswordDialog"
             key="Смяна на паролата">
@@ -79,16 +73,16 @@
             </v-list-tile-content>
           </v-list-tile>
 
-            <v-list-tile
-              @click="showChangeEmailDialog"
-              key="Смяна на емайл">
-              <v-list-tile-action>
-                <v-icon left class="topNavIcons">email</v-icon>
-              </v-list-tile-action>
-              <v-list-tile-content>
-                <v-list-tile-title>Смяна на емайл</v-list-tile-title>
-              </v-list-tile-content>
-            </v-list-tile>
+          <v-list-tile
+            @click="showChangeEmailDialog"
+            key="Смяна на емайл">
+            <v-list-tile-action>
+              <v-icon left class="topNavIcons">email</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Смяна на емайл</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
           <v-list-tile
             @click="onLogout"
@@ -104,7 +98,7 @@
 
       </v-menu>
 
-    <!--More Button-->
+      <!--More Button-->
       <app-more-button></app-more-button>
 
     </v-toolbar>
@@ -161,7 +155,7 @@
 
     <!--Snackbar success messages-->
     <v-snackbar
-      style="margin-top: 39px"
+      id="snackBar"
       v-model="snackbar"
       multi-line
       color="success"
@@ -169,7 +163,7 @@
       right
       absolute
       :timeout=3000>
-      <p class="snackBarMessage">{{ snackbarMessage }}</p>
+      <p id="snackBarMessage">{{ snackbarMessage }}</p>
       <v-btn
         dark
         flat
@@ -277,123 +271,139 @@
   }
 </script>
 
-<style scoped>
-
+<style lang="scss" scoped>
+  @import "../../../sharedVariables";
   @import url('https://fonts.googleapis.com/css?family=Marmelad&subset=cyrillic');
 
-  .hiddenAbove1220 {
-    display: none;
-  }
-
-  .hiddenUnder1220 {
-    display: inline;
-  }
-
-  .wrapper {
+  #wrapper {
     position: relative;
-    z-index: 1;
-  }
+    z-index: 2;
 
-  .topNav {
-    height: 8vh!important;
-    position: relative!important;
-  }
+    #topNav {
+      background-image: linear-gradient(to bottom,
+        $primary,
+        mix($primary, $midColor),
+        $midColor);
+      height: 8vh !important; /*60.32px*/
+      position: relative !important;
+      box-shadow: inset 0 .3vw .7vw .01vw black, 0 3px 10px -2px black;; /*4.608px 10.75px 0.1536px*/
 
-  .miniLogo {
-    margin: 1.3vh auto 0;
-    height: 7.8vh;
-    min-height: 60px;
-    width: 10.45vw;
-    min-width: 150px;
-    transition-duration: 1s;
-  }
 
-  .miniLogo:hover {
-    transform: scale(1.5) rotate(8deg);
-  }
+      .hiddenAbove1220 {
+        display: none;
+      }
 
-  .topNavItems {
-    height: 8vh!important;
-    padding: 0 2.22vw!important;
-  }
+      .hiddenUnder1220 {
+        display: inline;
 
-  .topNavItemsText{
-    text-shadow: .5px 1px rgba(0, 0, 0, 0.5);
-    font-size: 1.07vw;
-  }
+        .topNavItems {
+          height: 8vh !important; /*60.32px*/
+          padding: 0 2.22vw !important; /*34.0992px*/
 
-  .topNavIcons{
-    font-size: 1.5vw!important;
-  }
+          .topNavItemsText {
+            text-shadow: .5px 1px rgba(0, 0, 0, 0.5);
+            font-size: 1.07vw; /*16.4352px*/
+          }
 
-  .dropDownMenu{
-    margin-top: 3.5vw;
-  }
+          .topNavIcons {
+            font-size: 1.5vw !important; /*23.04px*/
+          }
+        }
 
-  .dropDownMenu *{
-    font-size: 1.1vw!important;
-  }
+        #dropDownMenu {
+          margin-top: 3.5vw; /*53.76px*/
 
-  .snackBarMessage {
-    margin: 0;
-    font-family: 'Marmelad', sans-serif;
-    font-size: 1.2rem;
-    white-space: pre-line;
-    text-align: center;
+          * {
+            font-size: 1.1vw !important; /*16.896px*/
+          }
+        }
+      }
+
+      #logoLink {
+        cursor: pointer;
+
+        #miniLogo {
+          margin: 2vh auto 0; /*15.08px*/
+          height: 6vh; /*45.24px*/
+          min-height: 40px;
+          width: 8vw; /*122.88px*/
+          min-width: 50px;
+          transition-duration: 1s;
+
+          &:hover {
+            transform: scale(1.5) rotate(8deg);
+          }
+        }
+      }
+    }
+
+    #snackBar {
+      margin-top: 39px;
+
+      #snackBarMessage {
+        margin: 0;
+        font-family: 'Marmelad', sans-serif;
+        font-size: 1.2rem;
+        white-space: pre-line;
+        text-align: center;
+      }
+    }
   }
 
   @media only screen and (max-height: 670px) {
-    .topNav, .topNavItems {
-      height: 55px!important;
+    #wrapper #topNav, .hiddenUnder1220 .topNavItems {
+      height: 55px !important;
     }
   }
 
   @media only screen and (max-width: 1440px) {
-    .topNavItemsText{
-      font-size: 15.5px;
-    }
+    #wrapper #topNav .hiddenUnder1220 {
+      .topNavItems {
+        padding: 0 32px !important;
 
-    .topNavIcons{
-      font-size: 24px!important;
-    }
+        .topNavItemsText {
+          font-size: 15.5px;
+        }
 
-    .topNavItems {
-      padding: 0 32px!important;
-    }
+        .topNavIcons {
+          font-size: 24px !important;
+        }
+      }
 
-    .dropDownMenu{
-      margin-top: 50px;
-    }
+      .dropDownMenu {
+        margin-top: 50px;
 
-    .dropDownMenu *{
-      font-size: 16px!important;
+        * {
+          font-size: 16px !important;
+        }
+      }
     }
   }
 
   @media only screen and (max-width: 1220px) {
+    #wrapper #topNav {
+      .hiddenAbove1220 {
+        display: inline;
+      }
 
-    .hiddenAbove1220 {
-      display: inline;
+      .hiddenUnder1220 {
+        display: none;
+      }
+
+      #logoLink #miniLogo {
+        transform: translate(-3vw, 0);
+        margin-top: 15px;
+        height: 40px;
+        width: 100px;
+      }
     }
-
-    .hiddenUnder1220 {
-      display: none;
-    }
-
   }
 
   @media only screen and (max-width: 732px) {
-    .miniLogo {
-      margin-top: 15px;
+    #wrapper #topNav {
+      .hiddenUnder1220 .topNavItems {
+        height: 55px !important;
+      }
     }
-    .topNav, .topNavItems {
-      height: 55px!important;
-    }
-
-    .miniLogo {
-      height: 60px;
-      width: 150px;
-    }
-
   }
 </style>

@@ -59,16 +59,18 @@
             src="../../static/Gallery/PhotoTape4.png"
             alt="PhotoTape">
 
-          <p class="hidden-sm-and-down">Ти си <br> Тук!</p>
+          <p class="hidden-sm-and-down" style="margin-bottom: 1vh">Ти си <br> Тук!</p>
           <p
             @click="selectPreviousThreePictures"
+            style="margin-bottom: 1vh"
             class="hidden-sm-and-down textButton">
-            << Предишни
+            << Предишнa
           </p>
           <p
             @click="selectNextThreePictures"
+            style="margin-bottom: 1vh"
             class="hidden-sm-and-down textButton">
-            Следващи >>
+            Следващa >>
           </p>
 
           <div class="fullSizePictureContainer">
@@ -269,16 +271,19 @@
 <style scoped>
   @import url('https://fonts.googleapis.com/css?family=Montserrat:500');
 
-  .welcomeText {
-    font-size: 2vw;
-    text-shadow: 0.04vw 0.04vw black;
-    text-align: center;
-  }
 
   .wrapper {
     min-height: 69.9vh;
     padding: 0 !important;
     background-image: linear-gradient(to left top, #9604d7, #2583f8, #4b6bf6, #734ceb, #9604d7);
+  }
+
+  .welcomeText {
+    font-size: 2vw;
+    text-shadow: 0.04vw 0.04vw black;
+    text-align: center;
+    margin-top: 2vh;
+    line-height: 6vh;
   }
 
   .galleryImage {
@@ -306,7 +311,7 @@
   .dialogContainer {
     position: relative;
     width: 100%;
-    height: 50vw;
+    height: 49vw;
     background-color: black;
     overflow: hidden;
   }

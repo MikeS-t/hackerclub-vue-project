@@ -7,31 +7,31 @@
 
   <div v-else id="modifyGamesContainer">
 
-      <v-combobox
-        v-if="editGamesMode || addNewGameMode"
-        v-model="selectedGameObj"
-        class="dropDown"
-        :items="games"
-        item-text="title"
-        item-value="id"
-        label="Избрана игра"
-        placeholder="Изберете тагове за премахване"
-        :readonly="addNewGameMode"
-      ></v-combobox>
-      <v-combobox
-        v-else
-        class="dropDown"
-        v-model="removeGameList"
-        :items="games"
-        item-text="title"
-        item-value="id"
-        label="Игри за премахване"
-        placeholder="Изберете тагове за премахване"
-        :error-messages="errorMsgs.selectedGame"
-        @click="errorMsgs.selectedGame = ''"
-        counter="6"
-        multiple
-      ></v-combobox>
+    <v-combobox
+      v-if="editGamesMode || addNewGameMode"
+      v-model="selectedGameObj"
+      class="dropDown"
+      :items="games"
+      item-text="title"
+      item-value="id"
+      label="Избрана игра"
+      placeholder="Изберете тагове за премахване"
+      :readonly="addNewGameMode"
+    ></v-combobox>
+    <v-combobox
+      v-else
+      class="dropDown"
+      v-model="removeGameList"
+      :items="games"
+      item-text="title"
+      item-value="id"
+      label="Игри за премахване"
+      placeholder="Изберете тагове за премахване"
+      :error-messages="errorMsgs.selectedGame"
+      @click="errorMsgs.selectedGame = ''"
+      counter="6"
+      multiple
+    ></v-combobox>
 
 
     <div id="mode">
@@ -65,9 +65,11 @@
 
       <!--Game card component (game preview)-->
 
-      <app-game-card
+      <div id="gamePreviewCardContainer">
+        <app-game-card id="gamePreviewCard"
         :gameInfoObj="selectedGameObj">
-      </app-game-card>
+        </app-game-card>
+      </div>
 
       <v-form ref="modifyGamesForm">
         <div id="detailsFromContainer">
@@ -466,7 +468,7 @@
       extractYTKey() {
         let inputString = this.selectedGameObj.trailer
 
-        if(inputString.startsWith('https://www.youtube.com/watch')) {
+        if (inputString.startsWith('https://www.youtube.com/watch')) {
           let startPos = inputString.indexOf('=')
           this.selectedGameObj.trailer = inputString.substring(startPos + 1, startPos + 12)
         }
@@ -492,96 +494,107 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+
   #modifyGamesContainer {
-    min-height: 86.5vh;
+    height: 92vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
-  }
 
-  .dropDown {
-    width: 30%;
-    margin: 3vh auto;
-  }
+    .dropDown {
+      width: 30vw;
+      margin: 3vh auto;
+    }
 
-  #selectedGameDetailsContainer {
-    width: 90%;
-    height: 65vh;
-    margin: 2vh auto 5vh;
-    display: flex;
-    justify-content: space-between;
-  }
+    #mode {
+      display: flex;
+      justify-content: center;
+      margin-top: -3vh;
 
-  #mode {
-    display: flex;
-    justify-content: center;
-    margin-top: -3vh;
-  }
+      .checkbox {
+        margin-left: 3vw;
+      }
+    }
 
-  .checkbox {
-    margin-left: 3vw;
-  }
+    #selectedGameDetailsContainer {
+      width: 100vw;
+      height: 65vh;
+      margin: 2vh auto 5vh;
+      display: flex;
+      justify-content: space-around;
 
-  #detailsFromContainer {
-    background: rgba(0, 0, 0, 0.3);
-    width: 54vw;
-    height: 100%;
-    display: grid;
-    grid-template-columns: 46% 46% 8%;
-    grid-template-rows: 25% 20% 20% 20% 15%;
-    grid-template-areas: "title title title" "creator description ." "image description ." "trailer tags ." "submit submit submit";
-  }
+      #gamePreviewCardContainer {
+        display: flex;
+        align-items: center;
 
-  #detailsFromContainer * {
-    font-size: 2.05vh; /*16px*/
-  }
+        #gamePreviewCard {
+          margin: 0;
+        }
+      }
 
-  #gameTitle {
-    grid-area: title;
-    justify-self: center;
-    align-self: center;
-    width: 17vw; /*245px*/
-  }
+      #detailsFromContainer {
+        background: rgba(0, 0, 0, 0.3);
+        width: 54vw;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 46% 46% 8%;
+        grid-template-rows: 25% 20% 20% 20% 15%;
+        grid-template-areas: "title title title" "creator description ." "image description ." "trailer tags ." "submit submit submit";
 
-  #gameCreator {
-    grid-area: creator;
-    justify-self: center;
-    width: 60%;
-    height: 6.42vh; /*50px*/
-  }
+        * {
+          font-size: 2.05vh; /*16px*/
+        }
 
-  #gameDescription {
-    grid-area: description;
-    width: 100%;
-  }
+        #gameTitle {
+          grid-area: title;
+          justify-self: center;
+          align-self: center;
+          width: 17vw; /*245px*/
+        }
 
-  #gameImage {
-    display: inline;
-    grid-area: image;
-    align-self: center;
-    margin-top: -10.7vh; /*81.69px*/
-    margin-left: 0.1vw; /*1.44px*/
-  }
+        #gameCreator {
+          grid-area: creator;
+          justify-self: center;
+          width: 60%;
+          height: 6.42vh; /*50px*/
+        }
 
-  #gameTrailer {
-    grid-area: trailer;
-    justify-self: center;
-    width: 60%;
-    height: 6.42vh; /*50px*/
-    /*margin-bottom: .6vh; !*4.67px*!*/
-  }
+        #gameDescription {
+          grid-area: description;
+          width: 100%;
+        }
 
-  #gameTags {
-    grid-area: tags;
-    width: 100%;
-    height: 6.42vh; /*50px*/
-    margin-top: -1.25vh; /*9.725px*/
-  }
+        #gameImage {
+          display: inline;
+          grid-area: image;
+          align-self: center;
+          margin-top: -10.7vh; /*81.69px*/
+          margin-left: 0.1vw; /*1.44px*/
+        }
 
-  .submitButton {
-    grid-area: submit;
-    justify-self: center;
-    width: 17vw; /*245px*/
+        #gameTrailer {
+          grid-area: trailer;
+          justify-self: center;
+          width: 60%;
+          height: 6.42vh; /*50px*/
+          /*margin-bottom: .6vh; !*4.67px*!*/
+        }
+
+        #gameTags {
+          grid-area: tags;
+          width: 100%;
+          height: 6.42vh; /*50px*/
+          margin-top: -1.25vh; /*9.725px*/
+        }
+
+        .submitButton {
+          grid-area: submit;
+          justify-self: center;
+          width: 17vw; /*245px*/
+        }
+      }
+    }
   }
 
   .dialogContainer {
@@ -596,47 +609,5 @@
     width: 80%;
   }
 
-  #deleteGamesContainer {
-    background: rgba(0, 0, 0, 0.3);
-    width: 80vw;
-    min-height: 67vh;
-    margin: 0 auto 5vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  #deleteGamesPreview {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    width: 80vw;
-    margin: 0 auto;
-  }
-
-  .selectedGame{
-    flex: 1 0 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2vh; /*15.56px*/
-  }
-
-  .selectedGameImg {
-    height: 21.85vh; /*170px*/
-    width: 11.80vw; /*170px*/
-    border-radius: 19.28vh; /*150px*/
-  }
-
-  .selectedGameTitle {
-    color: #ff9800;
-    font-size: 1.4vw; /*20.15px*/
-    font-family: 'Prosto One', cursive;
-    margin-top: 1vh; /*7.78px*/
-  }
-
-  #deleteButton {
-    margin: 3vh 0; /*23.34px*/
-  }
 
 </style>

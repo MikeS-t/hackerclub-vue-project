@@ -26,28 +26,32 @@ export default {
   },
   actions: {
     makeConnection({commit, state}) {
+      console.log('Making Connection')
       //Creating new user in the database
-      firebase.database().ref('KPData/users').push({username: 'Anonymous User', isCurrentUser: false}).then((data) => {
+      firebase.database().ref('KPData/users').push({username: 'Anonymous User'}).then((newUser) => {
         //Getting the newly created user ID from the database
-        commit('setCurrentUserID', data.key)
+        commit('setCurrentUserID', newUser.key)
 
         //Getting the data for all the currently active users from the database
         firebase.database().ref('KPData/users').on('value', (snapshot) => {
           let data = snapshot.val()
-          let userData = []
+          let usersData = []
 
-          Object.keys(data).forEach((userKey) => {
-            userData.push({
-              id: userKey,
-              username: data[userKey].username
+          console.log(data)
+          if (data) {
+            Object.keys(data).forEach((userKey) => {
+              usersData.push({
+                id: userKey,
+                username: data[userKey].username
+              })
             })
-          })
 
-          //Marking the current user
-          userData.find(user => user.id === state.currentUserID).isCurrentUser = true
+            //Marking the current user
+            usersData.find(user => user.id === newUser.key).isCurrentUser = true
+          }
 
           //Storing the current users data in the local storage
-          commit('setUsers', userData)
+          commit('setUsers', usersData)
         })
 
         //Getting the data for all the buttons from the database
@@ -78,55 +82,7 @@ export default {
         console.log(error)
       })
     },
-    //Backup of the old setup of actions
-    // setUsers({commit, state}) {
-    //   firebase.database().ref('KPData/users').on('value', (snapshot) => {
-    //     let data = snapshot.val()
-    //     let userData = []
-    //
-    //     Object.keys(data).forEach((userKey) => {
-    //       userData.push({
-    //         id: userKey,
-    //         username: data[userKey].username
-    //       })
-    //     })
-    //
-    //     console.log(userData.find(user => user.id === state.currentUserID))
-    //     userData.find(user => user.id === state.currentUserID).isCurrentUser = true
-    //
-    //     commit('setUsers', userData)
-    //   })
-    // },
-    // setButtons({commit}) {
-    //   firebase.database().ref('KPData/buttons').on('value', (snapshot) => {
-    //     let data = snapshot.val()
-    //     let buttonsData = []
-    //
-    //
-    //     Object.keys(data).forEach((buttonKey) => {
-    //       buttonsData.push({
-    //         id: buttonKey,
-    //         value: data[buttonKey].value,
-    //         color: data[buttonKey].color,
-    //         lastUser: data[buttonKey].lastUser
-    //       })
-    //     })
-    //
-    //     commit('setButtons', buttonsData)
-    //   })
-    // },
-    // setNumbers({commit}) {
-    //   firebase.database().ref('KPData/numbers').on('value', (snapshot) => {
-    //     commit('setNumbers', snapshot.val())
-    //   })
-    // },
-    // addUser({commit, state}) {
-    //   firebase.database().ref('KPData/users').push({username: 'Anonymous User', isCurrentUser: false}).then((data) => {
-    //     commit('setCurrentUserID', data.key)
-    //   }).catch(error => {
-    //     console.log(error)
-    //   })
-    // },
+
     updateUser({state}, payload) {
       firebase.database().ref('KPData/users/' + state.currentUserID).update({username: payload}).
       catch(error => {
@@ -140,7 +96,7 @@ export default {
       })
     },
     changeButton({commit, state}, payload) {
-      //Addint the newly clicked button value to the numbers string
+      //Adding the newly clicked button value to the numbers string
       let numbers = state.numbers
       numbers += '' + payload.value
 
@@ -168,6 +124,14 @@ export default {
     }
   },
   getters: {
+    getCurrentUserID(state) {
+      return state.currentUserID
+    },
+
+    getCurrentUserName(state) {
+      return state.users.find(user => user.id === state.currentUserID).username
+    },
+
     getUsers(state) {
       return state.users
     },

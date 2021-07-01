@@ -174,7 +174,7 @@
 
   .wrapper {
     padding: 0 !important;
-    min-height: 69.9vh;
+    min-height: 67vh;
   }
 
   .priceListColumn {
@@ -182,8 +182,8 @@
     border-radius: 5vw;
     width: 23vw;
     min-width: 330px;
-    height: 67vh;
-    min-height: 520px;
+    height: 64vh;
+    min-height: 450px;
     overflow: hidden;
     margin: 1.5vh 0;
   }
@@ -195,13 +195,13 @@
   }
 
   .columnTitleContainer{
-    height: 12.8vh;
+    height: 12vh;
     display: flex;
   }
 
   .columnTitle {
     width: 80%;
-    margin: 5% auto;
+    margin: 0 auto;
     font-family: 'Montserrat', sans-serif;
     font-size: 1.4vw;
     font-weight: 500;
@@ -220,6 +220,8 @@
   }
 
   .itemsContainer {
+    width: 95%;
+    margin: 0 auto;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -229,7 +231,7 @@
   }
 
   .sectionContainer {
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -251,7 +253,7 @@
   .serviceName, .servicePrice {
     position: absolute;
     font-family: 'Montserrat', sans-serif;
-    font-size: 1.3vw;
+    font-size: 1.2vw;
     text-shadow: 0.1vh 0.05vh black;
   }
 

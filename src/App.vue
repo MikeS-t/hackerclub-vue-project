@@ -27,13 +27,30 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   @import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons");
   @import url("./vuetifyCustomizations.css");
+  @import "sharedVariables";
 
+  html {
+    scrollbar-color: #7f7f7f black; /* thumb and track color */
+    scrollbar-width: thin;
+    overflow-y: auto;
+  }
+
+  header {
+    height: 8vh;
+  }
 
   main {
-    min-height: 69.9vh;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  footer {
+    height: 25vh;
   }
 
   /*Some shared classes*/
@@ -45,19 +62,23 @@
 
   .loader {
     top: calc(50% - 125px);
-    color: #ee3d39;
+    color: $primary;
   }
 
-  .noPadding{
+  .noPadding {
     padding: 0!important;
   }
 
-  .minHeight{
-    min-height: 69.9vh;
+  .minHeight {
+    min-height: 67vh;
   }
 
-  .minWidth{
+  .minWidth {
     min-width: 320px;
+  }
+
+  a {
+    text-decoration: none;
   }
 
 </style>

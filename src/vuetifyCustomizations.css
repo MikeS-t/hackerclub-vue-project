@@ -21,7 +21,7 @@
 /*Home.vue Carousel*/
 
 .v-jumbotron__image{
-  top: 1%!important;
+  top: 0!important;
   left: 0!important;
   width: 100%;
   -webkit-transform: translate(0, 0)!important;
@@ -34,6 +34,7 @@
 
 .v-carousel__controls{
   cursor: auto;
+  height: 6.5vh!important;
 }
 
 .v-carousel__controls__item{
@@ -41,8 +42,9 @@
   width: 1.5vw!important;
 }
 
+
 .v-carousel__controls__item .v-btn__content .v-icon{
-  font-size: 1.2vw!important;
+  font-size: 1.2vw !important;
 }
 
 /*PriceList.vue*/
@@ -196,6 +198,10 @@
 
 .v-menu__content {
   max-height: 38.56vh!important; /*300px*/
+}
+
+.menuable__content__active {
+  z-index: 1 !important;
 }
 
 .v-list {

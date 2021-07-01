@@ -86,15 +86,20 @@
         }
       }
     },
-    created () {
-      this.$store.dispatch('makeConnection')
+    beforeCreate () {
+      if (!this.$store.getters.getCurrentUserID) {
+        this.$store.dispatch('makeConnection')
+      }
 
       window.addEventListener('beforeunload', () => {
         this.$store.dispatch('deleteUser')
       })
     },
-    destroyed () {
-      this.$store.dispatch('deleteUser')
+    created () {
+      if (this.$store.getters.getCurrentUserID &&
+        this.$store.getters.getCurrentUserName != 'Anonymous User') {
+        this.username = this.$store.getters.getCurrentUserName
+      }
     }
   }
 </script>
@@ -111,9 +116,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    overflow: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+    scrollbar-color: #7c7c7c #e8e8e8; /* thumb and track color */
+    scrollbar-width: thin;
+    border-right: 5px solid;
+    border-image: linear-gradient(to bottom, #ee3d39, #f34e37, #f85d35, #fc6b34, #ff7934) 1 100%;
   }
+
 
   #activeUsersPanel p:first-of-type {
     margin-top: 2vh;

@@ -33,7 +33,7 @@
                     <h3 class="cardTitle white--text">{{ service.title }}</h3>
                     <v-flex offset-lg1>
                       <div
-                        class="serviceSubDescriptionFormat">
+                        class="serviceSubDescription">
                         {{ service.subDescription }}
                       </div>
                     </v-flex>
@@ -81,86 +81,84 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 
-  .card{
+  .card {
     display: flex;
     min-height: 29.56vh; /*230px*/
     height: 29.55vh; /*229.96px*/
     width: 95vw; /*1368px*/
     margin: 3.7vh auto; /*28.8px*/
-  }
 
-  .cardImg{
-    margin-left: 1vw; /*25.92px*/
-  }
+    .cardImg {
+      margin-left: 1vw; /*25.92px*/
+    }
 
-  .cardTitle{
-    font-size: 3.33vh; /*25.92px*/
-  }
+    .cardTitle {
+      margin-left: 2vw;
+      font-size: 3.33vh; /*25.92px*/
+    }
 
-  .serviceSubDescriptionFormat {
-    margin-top: 2.05vh; /*16px*/
-    font-size: 2.78vh; /*21.6px*/
-    line-height: 1;
-  }
+    .serviceSubDescription {
+      margin-top: 2.05vh; /*16px*/
+      font-size: 2.78vh; /*21.6px*/
+      line-height: 3.5vh;
+    }
 
-  .moreInfoButton, .moreInfoButton:hover, .moreInfoButton:focus
-  {
-    position: absolute;
-    right: -0.69vw; /*10px*/
-    bottom: 0;
-    padding: 0 1.7vw; /*24.48px*/
-    font-size: 2.22vh; /*17.28px*/
-    height: 5vh; /*38.9px*/
-  }
+    .moreInfoButton, .moreInfoButton:hover, .moreInfoButton:focus {
+      position: absolute;
+      right: -0.69vw; /*10px*/
+      bottom: 0;
+      padding: 0 1.7vw; /*24.48px*/
+      font-size: 2.22vh; /*17.28px*/
+      height: 5vh; /*38.9px*/
 
-  .moreInfoButton i{
-    font-size: 2.05vh!important; /*16px*/
+      i {
+        font-size: 2.05vh!important; /*16px*/
+      }
+    }
   }
 
   @media only screen and (max-width: 1263px) {
+
     .card {
       height: auto;
       width: 90vw;
       margin-bottom: 20px;
-    }
 
-    .cardTitle{
-      font-size: 26px;
-    }
+      .cardImg {
+        min-height: 200px;
+      }
 
-    .serviceSubDescriptionFormat {
-      font-size: 22px;
-      margin-bottom: 30px;
-    }
+      .cardTitle {
+        font-size: 26px;
+      }
 
-    .moreInfoButton, .moreInfoButton:hover, .moreInfoButton:focus
-    {
-      position: absolute;
-      right: 3px;
-      bottom: 0;
-      padding: 0 24px;
-      font-size: 14px;
-      height: 30px;
-    }
+      .serviceSubDescription {
+        font-size: 22px;
+        margin-bottom: 30px;
+      }
 
-    .moreInfoButton i{
-      font-size: 16px!important;
-    }
+      .moreInfoButton, .moreInfoButton:hover, .moreInfoButton:focus {
+        position: absolute;
+        right: 3px;
+        bottom: 0;
+        padding: 0 24px;
+        font-size: 14px;
+        height: 30px;
 
-    .cardImg{
-      min-height: 200px;
+        i {
+          font-size: 16px!important;
+        }
+      }
     }
   }
 
   @media only screen and (max-height: 570px) {
 
-    .cardTitle{
+    .cardTitle {
       margin-top: 10px;
       margin-bottom: 15px;
     }
-
   }
-
 </style>

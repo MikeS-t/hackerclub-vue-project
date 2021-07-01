@@ -20,3 +20,6 @@ array of key tag pairs.
 7. Use the snackbar component everywhere where i use snackbar!
 
 8. Nice animation for init loading
+
+
+Install sass or scss and use it in app.vue

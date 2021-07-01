@@ -47,7 +47,8 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import "../../../sharedVariables";
 
   #deleteGamesContainer {
     background: rgba(0, 0, 0, 0.3);
@@ -57,39 +58,47 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    #deleteGamesPreview {
+      flex: 1;
+      display: flex;
+      flex-wrap: wrap;
+      width: 80vw;
+      margin: 3vh auto;
+
+      .selectedGame{
+        flex: 1 0 30%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 2vh; /*15.56px*/
+
+        .selectedGameImg {
+          height: 18vh; /*170px*/
+          width: 9vw; /*170px*/
+          border-radius: 19.28vh; /*150px*/
+        }
+
+        .selectedGameTitle {
+          color: $secondary;
+          font-size: 1.4vw; /*20.15px*/
+          font-family: 'Prosto One', cursive;
+          margin-top: 1vh; /*7.78px*/
+        }
+      }
+    }
+
+    #deleteButton {
+      margin: 0 0 3vh; /*23.34px*/
+    }
   }
 
-  #deleteGamesPreview {
-    flex: 1;
-    display: flex;
-    flex-wrap: wrap;
-    width: 80vw;
-    margin: 0 auto;
-  }
 
-  .selectedGame{
-    flex: 1 0 30%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 2vh; /*15.56px*/
-  }
 
-  .selectedGameImg {
-    height: 21.85vh; /*170px*/
-    width: 11.80vw; /*170px*/
-    border-radius: 19.28vh; /*150px*/
-  }
 
-  .selectedGameTitle {
-    color: #ff9800;
-    font-size: 1.4vw; /*20.15px*/
-    font-family: 'Prosto One', cursive;
-    margin-top: 1vh; /*7.78px*/
-  }
 
-  #deleteButton {
-    margin: 3vh 0; /*23.34px*/
-  }
+
+
+
 
 </style>

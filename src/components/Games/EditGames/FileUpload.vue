@@ -118,49 +118,52 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+  @import "../../../sharedVariables";
+
   #wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    #label {
+      text-transform: uppercase;
+      font-size: 6vh;
+      color: $primary;
+      margin: 0;
+      padding: 0;
+      visibility: hidden;
+    }
+
+    #dropzone {
+      height: 50vh;
+      width: 50vw;
+      border: 4px dashed $primary;
+      border-radius: 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      visibility: hidden;
+      z-index: 2;
+
+      #fileUpload {
+        visibility: visible;
+        width: 14.93vw;  /*215px*/
+        height: 6.42vh;  /*50px*/
+        display: flex;
+        justify-items: center;
+
+        * {
+          font-size: 2.05vh; /*16px*/
+          min-height: 6.42vh;  /*50px*/
+        }
+      }
+    }
+
   }
 
   .visible {
     visibility: visible!important;
-  }
-
-  #label {
-    text-transform: uppercase;
-    font-size: 6vh;
-    color: #ee3d39;
-    margin: 0;
-    padding: 0;
-    visibility: hidden;
-  }
-
-  #dropzone {
-    height: 50vh;
-    width: 50vw;
-    border: 4px dashed #ee3d39;
-    border-radius: 25px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    visibility: hidden;
-    z-index: 2;
-  }
-
-  #fileUpload {
-    visibility: visible;
-    width: 14.93vw;  /*215px*/
-    height: 6.42vh;  /*50px*/
-    display: flex;
-    justify-items: center;
-  }
-
-  #fileUpload * {
-    font-size: 2.05vh; /*16px*/
-    min-height: 6.42vh;  /*50px*/
   }
 
 </style>

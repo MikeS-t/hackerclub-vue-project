@@ -23,6 +23,6 @@ export const routes = [
   { path: '/contacts', name: 'Contacts', component: Contacts },
   { path: '/booking', name: 'Booking', component: Booking },
   { path: '/lostGoods', name: 'LostGoods', component: LostGoods },
-  { path: '/KPComponent', name: 'KPComponent', component: KPComponent },
+  { path: '/RTConnection', name: 'KPComponent', component: KPComponent },
   { path: '/gallery', name: 'Gallery', component: Gallery }
 ];

@@ -54,7 +54,7 @@
   }
 
   .dropDownMenu{
-    margin-top: 3.5vw;
+    margin-top: 5.75vh;
   }
 
   .dropDownMenu *{
@@ -67,7 +67,7 @@
     }
 
     .dropDownMenu{
-      margin-top: 50px;
+      margin-top: 44px;
     }
 
     .dropDownMenu *{

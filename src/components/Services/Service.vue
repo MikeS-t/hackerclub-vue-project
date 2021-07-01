@@ -121,8 +121,8 @@
 
   .serviceImage{
     display: block;
-    height: 69.9vh; /*543.82px*/
-    width: 100%;
+    height: 67vh; /*543.82px*/
+    width: 100vw;
   }
 
   .titleContainer{
@@ -153,10 +153,12 @@
   .descriptionContainer{
     position: absolute;
     display: flex;
+    justify-content: center;
+    align-items: center;
     top: 52.4vh; /*407.67px*/
     left: 0;
     right: 0;
-    height: 17.5vh; /*136.15px*/
+    height: 14.5vh; /*136.15px*/
     background-color: rgba(52, 73, 94, .55);
   }
 
@@ -165,10 +167,9 @@
   .descriptionContainer p{
     margin: 0 auto;
     text-align: center;
-    width: 59.43vw; /*855.8px*/
+    width: 70vw; /*855.8px*/
     font-size: 2.57vh; /*20px*/
     white-space: pre-line;
-    align-self: center;
   }
 
   .priceLabel{
